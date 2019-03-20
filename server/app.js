@@ -11,7 +11,6 @@ const errorHandler = require('errorhandler');
 const dotenv = require('dotenv');
 const flash = require('express-flash');
 const path = require('path');
-const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
@@ -28,19 +27,18 @@ dotenv.load({ path: '.env.keys' });
 /**
  * Setup Authentication
  */
-const passportConfig = require('./config/passport');
+// const passportConfig = require('./config/passport');
 
 /**
  * Get Routes
  */
-const authRoutes = require('./src/routesAuth');
 const publicRoutes = require('./src/routesPublic');
 
 /**
  * Setup / Initialization
  */
 const app = express();
-const BASE_URL = '/api/v1';
+const BASE_URL = '/api';
 
 const whitelist = ['http://localhost:3000', undefined]; // Undefined for Postman
 const corsOptions = {
@@ -56,64 +54,23 @@ const corsOptions = {
 };
 
 /**
- * Connect to MongoDB.
- */
-mongoose.set('useCreateIndex', true);
-mongoose
-  .connect(
-    process.env.MONGODB_URI,
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log(chalk.green('✓'), 'MongoDB Connected!'))
-  .catch(err => console.log('MongoDB Error: ', err));
-
-/**
  * Express configuration.
  */
-app.set('port', process.env.PORT || 3003);
+app.set('port', process.env.PORT || 4000);
 app.use(expressStatusMonitor());
 app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-app.use(
-  session({
-    resave: true,
-    saveUninitialized: true,
-    secret: process.env.SESSION_SECRET,
-    cookie: { maxAge: 3.6e6, httpOnly: false, secure: false }, // expires after 1 hour
-  })
-);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(cors(corsOptions)); // todo set CORS up
 app.disable('x-powered-by');
 
-app.use((req, res, next) => {
-  console.log('session', req.session, 'id', req.session.id);
-  // Refresh user cookie with every request
-  req.session._garbage = Date();
-  req.session.touch();
-  //res.locals.user = req.user || null;
-  // no idea but may be useful
-  // After successful login, redirect back to the intended page
-  //console.log('req user: ', req.user, 'req.session: ', req.session, 'res locals', res.locals);
-  // if (!req.user && req.path !== '/login' && !req.path.match(/^\/auth/) && !req.path.match(/\./)) {
-  //   console.log('HERE ONE');
-  //   req.session.returnTo = req.originalUrl;
-  // } else if (req.user && (req.path === '/account' || req.path.match(/^\/api/))) {
-  //   req.session.returnTo = req.originalUrl;
-  // }
-  next();
-});
-
 // For public requests
-app.use(BASE_URL + '/public', cors(corsOptions), publicRoutes);
-
-// For authenticated requests
-app.use(BASE_URL + '/auth', cors(corsOptions), authRoutes);
+app.use(BASE_URL, cors(corsOptions), publicRoutes);
 
 /**
  * Error Handler.
