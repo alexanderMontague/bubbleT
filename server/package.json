@@ -1,8 +1,8 @@
 {
-  "name": "cryptowatch",
+  "name": "cis3750",
   "version": "1.1.0",
-  "description": "Backend services for the Cryptowatch application",
-  "author": "Alex Montague",
+  "description": "Backend services for bubbleT salary application",
+  "author": "cis3750-group3",
   "license": "MIT",
   "scripts": {
     "postinstall": "npm rebuild",

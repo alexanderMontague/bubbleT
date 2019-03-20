@@ -1,15 +1,21 @@
-const User = require('../../models/User');
-
-/**
- * GET /deleteAllUsers
- * DO NOT FUCK WITH THIS
- * DELETE ASAP
+/*
+ *   GET /api/v1/public/test
+ *
+ *   REQ: NULL
+ *
+ *   RES: {
+ *     response: {
+ *       code: Integer,
+ *       message: String,
+ *       data: Object || Array || null,
+ *       error: Boolean
+ *     }
+ *   }
  */
-deleteAllUsers = (req, res) => {
-  User.remove({}, err => {
-    console.log('delete all users error: ' + err);
-    res.send('Successfully deleted all users. I hope you meant to do that');
-  });
-};
+function test(req, res) {
+  return res.json({ hello: 'world' });
+}
 
-module.exports = { deleteAllUsers };
+module.exports = {
+  test,
+};
