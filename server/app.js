@@ -11,7 +11,6 @@ const errorHandler = require('errorhandler');
 const dotenv = require('dotenv');
 const flash = require('express-flash');
 const path = require('path');
-const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
@@ -39,7 +38,7 @@ const publicRoutes = require('./src/routesPublic');
  * Setup / Initialization
  */
 const app = express();
-const BASE_URL = '/api/v1';
+const BASE_URL = '/api';
 
 const whitelist = ['http://localhost:3000', undefined]; // Undefined for Postman
 const corsOptions = {
@@ -55,18 +54,6 @@ const corsOptions = {
 };
 
 /**
- * Connect to MongoDB.
- */
-// mongoose.set('useCreateIndex', true);
-// mongoose
-//   .connect(
-//     process.env.MONGODB_URI,
-//     { useNewUrlParser: true }
-//   )
-//   .then(() => console.log(chalk.green('✓'), 'MongoDB Connected!'))
-//   .catch(err => console.log('MongoDB Error: ', err));
-
-/**
  * Express configuration.
  */
 app.set('port', process.env.PORT || 4000);
@@ -76,14 +63,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-// app.use(
-//   session({
-//     resave: true,
-//     saveUninitialized: true,
-//     secret: process.env.SESSION_SECRET,
-//     cookie: { maxAge: 3.6e6, httpOnly: false, secure: false }, // expires after 1 hour
-//   })
-// );
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -91,7 +70,7 @@ app.use(cors(corsOptions)); // todo set CORS up
 app.disable('x-powered-by');
 
 // For public requests
-app.use(BASE_URL + '/public', cors(corsOptions), publicRoutes);
+app.use(BASE_URL, cors(corsOptions), publicRoutes);
 
 /**
  * Error Handler.

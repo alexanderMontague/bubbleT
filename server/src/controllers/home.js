@@ -1,5 +1,5 @@
 /*
- *   GET /api/v1/public/test
+ *   GET /api/test
  *
  *   REQ: NULL
  *
