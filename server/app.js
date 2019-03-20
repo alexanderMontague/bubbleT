@@ -28,7 +28,7 @@ dotenv.load({ path: '.env.keys' });
 /**
  * Setup Authentication
  */
-const passportConfig = require('./config/passport');
+// const passportConfig = require('./config/passport');
 
 /**
  * Get Routes
