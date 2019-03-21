@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "npm rebuild",
-    "start": "nodemon app.js -e js,html,css,json",
+    "start": "nodemon app.js --ignore 'src/data/*.json' -e js,html,css,json",
     "test": "nyc mocha --timeout=10000 --exit",
     "lint": "eslint \"**/*.js\""
   },
