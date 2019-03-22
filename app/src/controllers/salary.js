@@ -122,7 +122,7 @@ function querySalaryData(req, res) {
     return true;
   });
 
-  return res.json(queriedData);
+  return res.json({ queryData: queriedData });
 }
 
 // GET /api/test
