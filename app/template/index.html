@@ -29,6 +29,9 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/custom.css">
 
+    <!-- icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
     <!-- Modernizer for Portfolio -->
     <script src="./js/modernizer.js"></script>
 
@@ -103,107 +106,77 @@
                     [stuff]
                 </form>
             </div>
+
             <div class="col-8 pt-4">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="tab-content" id="view-type-tabContent">
+                    <div class="tab-pane fade show active" id="view-type-table" role="tabpanel" aria-labelledby="view-type-table-tab">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">First</th>
+                              <th scope="col">Last</th>
+                              <th scope="col">Handle</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Mark</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Jacob</td>
+                              <td>Thornton</td>
+                              <td>@fat</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>Larry</td>
+                              <td>the Bird</td>
+                              <td>@twitter</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="view-type-pie" role="tabpanel" aria-labelledby="view-type-pie-tab">
+                        <!-- PIE CHART HTML GOES HERE -->
+                    </div>
+                    <div class="tab-pane fade" id="view-type-histogram" role="tabpanel" aria-labelledby="view-type-histogram-tab">
+                        <!-- HISTOGRAM CHART HTML GOES HERE -->
+                    </div>
+                    <div class="tab-pane fade" id="view-type-line" role="tabpanel" aria-labelledby="view-type-line-tab">
+                        <!-- LINE CHART HTML GOES HERE -->
+                    </div>
+                </div>
             </div>
             <div class="col-2">
                 <div class="message-box">
                     <a href="#" class="hover-btn-new orange"><span>Download</span></a>
                     <hr>
-                    <nav class="nav nav-pills nav-fill flex-column">
-                        <a class="nav-item nav-link active" href="#">Table</a>
-                        <a class="nav-item nav-link" href="#">Pie Chart</a>
-                        <a class="nav-item nav-link" href="#">Histogram</a>
-                        <a class="nav-item nav-link disabled" href="#">Line Graph</a>
+                    <nav class="nav nav-pills nav-fill flex-column"  id="view-type" role="tablist" aria-orientation="vertical">
+                        <a class="nav-item nav-link active" id="view-type-table-tab" data-toggle="pill" href="#view-type-table" role="tab" aria-controls="view-type-table" aria-selected="true">
+                            <i class="display-3 fas fa-table"></i><br>
+                            Table
+                        </a>
+                        <a class="nav-item nav-link" id="view-type-pie-tab" data-toggle="pill" href="#view-type-pie" role="tab" aria-controls="view-type-pie" aria-selected="true">
+                            <i class="display-3 fas fa-chart-pie"></i><br>
+                            Pie Chart
+                        </a>
+                        <a class="nav-item nav-link" id="view-type-histogram-tab" data-toggle="pill" href="#view-type-histogram" role="tab" aria-controls="view-type-histogram" aria-selected="true">
+                            <i class="display-3 fas fa-chart-bar"></i><br>
+                            Histogram</a>
+                        <a class="nav-item nav-link" id="view-type-line-tab" data-toggle="pill" href="#view-type-line" role="tab" aria-controls="view-type-line" aria-selected="true">
+                            <i class="display-3 fas fa-chart-line"></i><br>
+                            Line Graph
+                        </a>
                     </nav>
                 </div>
             </div>
         </div>
     </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-xs-12">
-                    <div class="widget clearfix">
-                        <div class="widget-title">
-                            <h3>About US</h3>
-                        </div>
-                        <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis montes.</p>
-                        <div class="footer-right">
-                            <ul class="footer-links-soi">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-github"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            </ul><!-- end links -->
-                        </div>
-                    </div><!-- end clearfix -->
-                </div><!-- end col -->
-
-                <div class="col-lg-4 col-md-4 col-xs-12">
-                    <div class="widget clearfix">
-                        <div class="widget-title">
-                            <h3>Information Link</h3>
-                        </div>
-                        <ul class="footer-links">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Pricing</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul><!-- end links -->
-                    </div><!-- end clearfix -->
-                </div><!-- end col -->
-
-                <div class="col-lg-4 col-md-4 col-xs-12">
-                    <div class="widget clearfix">
-                        <div class="widget-title">
-                            <h3>Contact Details</h3>
-                        </div>
-
-                        <ul class="footer-links">
-                            <li><a href="mailto:#">info@yoursite.com</a></li>
-                            <li><a href="#">www.yoursite.com</a></li>
-                            <li>PO Box 16122 Collins Street West Victoria 8007 Australia</li>
-                            <li>+61 3 8376 6284</li>
-                        </ul><!-- end links -->
-                    </div><!-- end clearfix -->
-                </div><!-- end col -->
-
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </footer><!-- end footer -->
 
     <div class="copyrights">
         <div class="container">
