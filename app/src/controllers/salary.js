@@ -1,3 +1,5 @@
+const Json2csvParser = require('json2csv').Parser;
+
 const ontario2010 = require('../data/ontario2010.json');
 const ontario2011 = require('../data/ontario2011.json');
 const ontario2012 = require('../data/ontario2012.json');
@@ -125,6 +127,66 @@ function querySalaryData(req, res) {
   return res.json({ queryData: queriedData });
 }
 
+/*
+ *   GET /api/downloadData
+ *
+ *   REQ: {
+ *      body: {
+ *        data: Array,
+ *        type: String ('json' || 'csv')
+ *      }
+ *   }
+ *
+ *   RES: {
+ *     response: {
+ *       success: Bool,
+ *       message: String,
+ *     } ||
+ *     file sent back
+ *   }
+ */
+function downloadSalaryData(req, res) {
+  const salaryData = req.body.data;
+  const dataType = req.body.type;
+
+  if (!salaryData || !dataType) {
+    return res.json({ success: false, message: 'No data or type given' });
+  }
+
+  // no further formatting needed
+  if (dataType === 'json') {
+    return res.send(salaryData);
+  }
+
+  // if csv, convert json to csv and send it back
+  const fields = [
+    'Year',
+    'Sector',
+    'Salary',
+    'Employer',
+    'First Name',
+    'Last Name',
+    'Job Title',
+    'Taxable Benefits',
+  ];
+  const formattedData = salaryData.map(record => {
+    return {
+      Year: record.calendar_year.content,
+      Sector: (record.sector || record._sector).content,
+      Salary: record.salary_paid.content,
+      Employer: record.employer.content,
+      'First Name': record.first_name.content,
+      'Last Name': record.last_name.content,
+      'Job Title': record.job_title.content,
+      'Taxable Benefits': record.taxable_benefits.content,
+    };
+  });
+
+  const json2csvParser = new Json2csvParser({ fields });
+  const csv = json2csvParser.parse(formattedData);
+  return res.send(csv);
+}
+
 // GET /api/test
 function testSalaryData(req, res) {
   return res.json({
@@ -139,4 +201,5 @@ module.exports = {
   fullSalaryData,
   querySalaryData,
   testSalaryData,
+  downloadSalaryData,
 };
