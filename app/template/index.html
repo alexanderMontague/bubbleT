@@ -113,9 +113,9 @@
             <div class="col-8 pt-4">
                 <div class="tab-content" id="view-type-tabContent">
                     <div class="tab-pane fade show active" id="view-type-table" role="tabpanel" aria-labelledby="view-type-table-tab">
-                        <div id="table-menu" class="row">
+                        <div id="table-menu" class="row mb-2">
                             <div class="col-8">
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <div class="mb-0 alert alert-warning alert-dismissible fade show" role="alert">
                               <strong>Sample alert!</strong> This is a message to the user.
                               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -125,12 +125,145 @@
                             <div class="col-4">
                                 <a class="btn btn-secondary" data-toggle="collapse" href="#sorting-options" role="button" aria-expanded="false" aria-controls="sorting-options">Sorting Options <i class="fas fa-cog"></i></a>
                             </div>
-                        </div>
-                        <div id="sorting-options" class="collapse card text-white bg-secondary mb-2">
+                        </div><!-- end table menu -->
+                        <div id="sorting-options" class=" card text-white bg-secondary mb-2">
                           <div class="card-body">
-                            A form goes here
+                            <form method="post" action="#">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="text-warning">Show columns</h4>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-all">
+                                          <label class="form-check-label" for="table-show-all">
+                                            <strong>Select All</strong>
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-fname">
+                                          <label class="form-check-label" for="table-show-fname">
+                                            Sector
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-salary">
+                                          <label class="form-check-label" for="table-show-salary">
+                                            Salary
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-employ">
+                                          <label class="form-check-label" for="table-show-employ">
+                                            Employer
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-fname">
+                                          <label class="form-check-label" for="table-show-fname">
+                                            First Name
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-lname">
+                                          <label class="form-check-label" for="table-show-lname">
+                                            Last Name
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-title">
+                                          <label class="form-check-label" for="table-show-title">
+                                            Job Title
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-tb">
+                                          <label class="form-check-label" for="table-show-tb">
+                                            Taxable Benefits
+                                          </label>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group row">
+                                            <div class="col-4">
+                                            <select class="form-control" id="table-perpage">
+                                                <option value="25">25</option>
+                                                <option value="50" selected>50</option>
+                                                <option value="100">100</option>
+                                            </select>
+                                            </div>
+                                            <label class="col pl-0">per page</label>
+                                        </div>
+                                    </div><!-- end left form column -->
+                                    <div class="col-6">
+                                        <h4 class="text-warning">Sort by</h4>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-1">1</label>
+                                           </div>
+                                            <select id="table-sort-1" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-2">2</label>
+                                           </div>
+                                            <select id="table-sort-2" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-3">3</label>
+                                           </div>
+                                            <select id="table-sort-3" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-4">4</label>
+                                           </div>
+                                            <select id="table-sort-4" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-5">5</label>
+                                           </div>
+                                            <select id="table-sort-5" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-6">6</label>
+                                           </div>
+                                            <select id="table-sort-6" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                    </div><!-- end right form column -->
+                                </div><!-- end row -->
+                            </form>
+                          </div><!-- end card-body -->
+                          <div class="card-footer d-flex justify-content-between">
+                            <button class="btn btn-outline-light">Clear</button>
+                            <button class="btn btn-primary btn-lg">Update</button>
                           </div>
-                        </div>
+                        </div><!-- end sorting options .card -->
+
                         <table class="table">
                           <thead>
                             <tr>
