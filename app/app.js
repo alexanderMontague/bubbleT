@@ -68,7 +68,7 @@ app.use(expressValidator());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(express.static('./template'));
+app.use(express.static('./public'));
 app.use(cors(corsOptions)); // todo set CORS up
 app.disable('x-powered-by');
 
