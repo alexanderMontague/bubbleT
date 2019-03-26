@@ -1,5 +1,63 @@
 'use strict';
 
+// GLOBALS
+// table data
+let tableData = [];
+// table element reference
+const salaryTable = document.getElementById('salary-table');
+// records per page
+let perPage = document.getElementById('table-perpage').value;
+
+const renderTable = () => {
+  // set headers
+  salaryTable.innerHTML = `
+    <thead>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Sector</th>
+      <th scope="col">Employer</th>
+    </thead>
+  `;
+
+  // set body data
+  for (let i = 0; i < perPage; i++) {
+    const newRow = salaryTable.insertRow(i + 1);
+    newRow.innerHTML = `
+      <td>${tableData[i].first_name.content}</td>
+      <td>${tableData[i].last_name.content}</td>
+      <td>${tableData[i].salary_paid.content}</td>
+      <td>${(tableData[i].sector || tableData[i]._sector).content}</td>
+      <td>${tableData[i].employer.content}</td>
+    `;
+  }
+};
+
+$(document).ready(() => {
+  // initial table data fetch
+  const selectedYear = document.getElementById('table-sort-1').value;
+  $.ajax({
+    type: 'get',
+    url: '/api/salaryData',
+    data: { year: selectedYear },
+    success: data => {
+      tableData = data.salaryData;
+      renderTable();
+    },
+    fail: err => {
+      console.log('Initial table data fetch failed', err);
+    },
+  });
+});
+
+document.getElementById('update-button').onclick = () => {
+  // update per page value
+  perPage = document.getElementById('table-perpage').value;
+
+  // re-render table
+  renderTable();
+};
+
 const testData = [
   {
     _sector: {
@@ -126,5 +184,3 @@ document.getElementById('downloadSalaryButton').onclick = () => {
     },
   });
 };
-
-

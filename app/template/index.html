@@ -196,12 +196,13 @@
                                         <h4 class="text-warning">Sort by</h4>
                                         <div class="input-group mb-2">
                                            <div class="input-group-prepend">
-                                            <label class="input-group-text" for="table-sort-1">1</label>
+                                            <label class="input-group-text" for="table-sort-1">Year</label>
                                            </div>
                                             <select id="table-sort-1" class="form-control">
-                                                <option></option>
-                                                <option>Sector</option>
-                                                <option>Etc</option>
+                                                <option>2013</option>
+                                                <option>2012</option>
+                                                <option>2011</option>
+                                                <option>2010</option>
                                             </select>
                                         </div>
                                         <div class="input-group mb-2">
@@ -260,38 +261,20 @@
                           </div><!-- end card-body -->
                           <div class="card-footer d-flex justify-content-between">
                             <button class="btn btn-outline-light">Clear</button>
-                            <button class="btn btn-primary btn-lg">Update</button>
+                            <button id="update-button" class="btn btn-primary btn-lg">Update</button>
                           </div>
                         </div><!-- end sorting options .card -->
 
-                        <table class="table">
+                        <table id="salary-table" class="table">
                           <thead>
-                            <tr>
-                              <th scope="col">#</th>
                               <th scope="col">First</th>
                               <th scope="col">Last</th>
-                              <th scope="col">Handle</th>
-                            </tr>
+                              <th scope="col">Salary</th>
+                              <th scope="col">Sector</th>
+                              <th scope="col">Employer</th>
                           </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>Mark</td>
-                              <td>Otto</td>
-                              <td>@mdo</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>Jacob</td>
-                              <td>Thornton</td>
-                              <td>@fat</td>
-                            </tr>
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>Larry</td>
-                              <td>the Bird</td>
-                              <td>@twitter</td>
-                            </tr>
+                          <tbody id="salary-table-body">
+                            <!-- dynamically generated -->
                           </tbody>
                         </table>
                     </div>
