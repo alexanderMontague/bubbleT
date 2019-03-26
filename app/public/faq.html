@@ -25,7 +25,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 </head>
 
-<body>
+<body class="bg-lightish">
   <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
     <a class="navbar-brand p-0" href="#"><img src="assets/logo.png" alt="bubbleT"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -42,12 +42,13 @@
     </div>
   </nav><!-- end main menu -->
 
-  <div class="container-fluid">
-    <div class="row">
-
-      <main role="main" class="col-md-8 px-4">
-        <div class="tab-content" id="view-type-tabContent">
-          
+  <div class="container bg-light shadow">
+      <main role="main" class="px-4 pb-4" id="faq-content">
+        <h1>FAQ</h1>
+        <div id="faq-loader" class="text-center text-info">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
         </div>
       </main>
 
@@ -60,7 +61,7 @@
   </footer>
   <script src="./js/jquery.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
-  <script src="./js/salaries.js"></script>
+  <script src="./js/faq.js"></script>
 </body>
 
 </html>
