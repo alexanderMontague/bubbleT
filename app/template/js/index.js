@@ -35,8 +35,12 @@ const renderTable = () => {
 };
 
 $(document).ready(() => {
-  // initial table data fetch
-  const selectedYear = document.getElementById('table-sort-1').value;
+  let selectedYear = document.getElementById('filter-year').value;
+
+  if (selectedYear === undefined || selectedYear === 0) {
+    selectedYear = 2013;
+  }
+
   $.ajax({
     type: 'get',
     url: '/api/salaryData',
@@ -57,7 +61,49 @@ document.getElementById('update-button').onclick = () => {
 
   // re-render table
   renderTable();
+
+  // success message
+  $('#sorting-success').show();
+
+  console.log("Updated!");
 };
+
+document.getElementById('filter-button').onclick = () => {
+  // update per page value
+  perPage = document.getElementById('table-perpage').value;
+
+  let fyear = document.getElementById('filter-year').value;
+
+  $.ajax({
+    type: 'get',
+    url: '/api/queryData',
+    data: {
+      queryObj: {
+        year: fyear,
+        sector: universities,
+        salary: {
+          min: 0,
+          max: 1000000
+        },
+        employer: "University of Guelph",
+        firstName: null,
+        lastName: null,
+        exact: null
+      }
+    },
+    success: data => {
+      console.log("On FE " + data.queryData);
+      tableData = data.queryData;
+      renderTable();
+    },
+    fail: err => {
+      console.log('Initial table data fetch failed', err);
+    },
+  });
+
+  console.log("Filtered!");
+};
+
 
 const testData = [
   {
