@@ -5,6 +5,7 @@
 let tableData = [];
 // table element reference
 const salaryTable = document.getElementById('salary-table');
+
 // records per page
 let perPage = document.getElementById('table-perpage').value;
 
