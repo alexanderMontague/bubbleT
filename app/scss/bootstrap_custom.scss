@@ -15,26 +15,40 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black:    #000;
 
-$red: #F0E866;
+$red: #F94741;
 $dark-red: #AB4D6B;
 $blue: #66B5C7;
 $green: #89F3A6;
 $yellow: #F0E866;
 
+$primary: $red;
+$secondary:     $gray-300;
+$success:       $green;
+$info:          $blue;
+$warning:       $yellow;
+$danger:        $red;
+$light:         $white;
+$dark:          $gray-800;
 
+.bg-lightish {background-color: $gray-100;}
 
-// Bootstrap includes
-// Required
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/mixins";
+body {background-color:$white;}
 
-// Optional
-@import "node_modules/bootstrap/scss/reboot";
-@import "node_modules/bootstrap/scss/type";
-@import "node_modules/bootstrap/scss/images";
-@import "node_modules/bootstrap/scss/code";
-@import "node_modules/bootstrap/scss/grid";
+$font-family-sans-serif: "PT Sans", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+
+$headings-font-family: "Roboto";
+$headings-font-weight:        300 !default;
+$headings-line-height:        1.4 !default;
+$headings-color:             $dark-red;
+
+$component-active-bg: $info;
+
+// Icon fix
+.fa, .fas {font-weight:900!important;}
 
 // Dashboard theme
-@import "bootstrap_dashboard"
+@import "bootstrap_dashboard";
+
+// Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
+

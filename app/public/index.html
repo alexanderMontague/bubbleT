@@ -14,22 +14,30 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!--<link href="./bootstrap_custom.css" rel="stylesheet">-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="bootstrap_custom.css">
 </head>
-<body class="pt-4">
-    <nav class="navbar fixed-top flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
-        </li>
-      </ul>
+<body>
+    <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
+      <a class="navbar-brand p-0" href="#"><img src="logo.png" alt="bubbleT"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+          <li class="nav-item active"><a class="nav-link" href="index.html">home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">about</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">faq</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">contact</a></li>
+        </ul>
+      </div>
     </nav><!-- end main menu -->
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
           <div class="sidebar-sticky">
             <h4>Filters</h4>
           </div>
@@ -41,9 +49,27 @@
           </div>
         </main>
 
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <nav class="col-md-2 d-none d-md-block bg-lightish sidebar pt-2">
           <div class="sidebar-sticky">
-
+            <a href="#" id="downloadSalaryButton" class="btn btn-lg btn-primary w-100"><span>Download <i class="fas fa-download"></i></span></a>
+              <hr>
+              <nav class="nav nav-pills nav-fill flex-column"  id="view-type" role="tablist" aria-orientation="vertical">
+                  <a class="nav-item nav-link active" id="view-type-table-tab" data-toggle="pill" href="#view-type-table" role="tab" aria-controls="view-type-table" aria-selected="true">
+                      <i class="display-3 fas fa-table"></i><br>
+                      Table
+                  </a>
+                  <a class="nav-item nav-link" id="view-type-pie-tab" data-toggle="pill" href="#view-type-pie" role="tab" aria-controls="view-type-pie" aria-selected="true">
+                      <i class="display-3 fas fa-chart-pie"></i><br>
+                      Pie Chart
+                  </a>
+                  <a class="nav-item nav-link" id="view-type-histogram-tab" data-toggle="pill" href="#view-type-histogram" role="tab" aria-controls="view-type-histogram" aria-selected="true">
+                      <i class="display-3 fas fa-chart-bar"></i><br>
+                      Histogram</a>
+                  <a class="nav-item nav-link" id="view-type-line-tab" data-toggle="pill" href="#view-type-line" role="tab" aria-controls="view-type-line" aria-selected="true">
+                      <i class="display-3 fas fa-chart-line"></i><br>
+                      Line Graph
+                  </a>
+              </nav>
           </div>
         </nav><!-- end right side menu -->
     </div>

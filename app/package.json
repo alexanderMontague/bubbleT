@@ -9,7 +9,7 @@
     "start": "nodemon app.js --ignore './src/data/*.json' -e js,html,css",
     "test": "nyc mocha --timeout=10000 --exit",
     "lint": "eslint \"**/*.js\"",
-    "scss": "node-sass --watch scss -o public/"
+    "scss": "node-sass --watch scss/bootstrap_custom.scss -o public/"
   },
   "dependencies": {
     "axios": "^0.18.0",
