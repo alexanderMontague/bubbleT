@@ -1,6 +1,8 @@
+$navbar-height: 60px;
+
 body {
   font-size: .875rem;
-  padding-top:60px;
+  padding-top: $navbar-height;
 }
 
 .feather {
@@ -26,9 +28,9 @@ body {
 .sidebar-sticky {
   position: relative;
   top: 0;
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
+  height: calc(100vh - $navbar-height);
   overflow-x: hidden;
+  padding-top: 2rem;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
