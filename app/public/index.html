@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     
     <link rel="stylesheet" href="bootstrap_custom.css">
+
+    <!--Chart.js CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 </head>
 <body>
     <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
@@ -44,9 +47,304 @@
         </nav><!-- end filter menu -->
 
         <main role="main" class="col-md-8 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            Stuff
-          </div>
+          <div class="tab-content" id="view-type-tabContent">
+             <div class="tab-pane fade show active" id="view-type-table" role="tabpanel" aria-labelledby="view-type-table-tab">
+                <div id="table-menu" class="row mb-2">
+                  <div class="col-8">
+                    <div class="mb-0 alert alert-warning alert-dismissible fade show" role="alert">
+                      <strong>Sample alert!</strong> This is a message to the user.
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            </div>
+                            <div class="col-4" style="margin: auto;">
+                                <a class="btn btn-secondary" data-toggle="collapse" href="#sorting-options" role="button" style="width: 100%;" aria-expanded="false" aria-controls="sorting-options">Sorting Options <i class="fas fa-cog"></i></a>
+                            </div>
+                        </div><!-- end table menu -->
+                        <div id="sorting-options" class="collapse card text-white bg-secondary mb-2">
+                          <div class="card-body">
+                            <form method="post" action="#">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="text-info">Show columns</h4>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-all">
+                                          <label class="form-check-label" for="table-show-all">
+                                            <strong>Select All</strong>
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-fname">
+                                          <label class="form-check-label" for="table-show-fname">
+                                            Sector
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-salary">
+                                          <label class="form-check-label" for="table-show-salary">
+                                            Salary
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-employ">
+                                          <label class="form-check-label" for="table-show-employ">
+                                            Employer
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-fname">
+                                          <label class="form-check-label" for="table-show-fname">
+                                            First Name
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-lname">
+                                          <label class="form-check-label" for="table-show-lname">
+                                            Last Name
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-title">
+                                          <label class="form-check-label" for="table-show-title">
+                                            Job Title
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="" id="table-show-tb">
+                                          <label class="form-check-label" for="table-show-tb">
+                                            Taxable Benefits
+                                          </label>
+                                        </div>
+                                        <hr>
+                                        <div class="form-group row">
+                                            <div class="col-4">
+                                            <select class="form-control" id="table-perpage">
+                                                <option value="25">25</option>
+                                                <option value="50" selected>50</option>
+                                                <option value="100">100</option>
+                                            </select>
+                                            </div>
+                                            <label class="col pl-0">per page</label>
+                                        </div>
+                                    </div><!-- end left form column -->
+                                    <div class="col-6">
+                                        <h4 class="text-info">Sort by</h4>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+
+                                            <label class="input-group-text" for="table-sort-1">Year</label>
+                                           </div>
+                                            <select id="table-sort-1" class="form-control">
+                                                <option>2013</option>
+                                                <option>2012</option>
+                                                <option>2011</option>
+                                                <option>2010</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-2">2</label>
+                                           </div>
+                                            <select id="table-sort-2" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-3">3</label>
+                                           </div>
+                                            <select id="table-sort-3" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-4">4</label>
+                                           </div>
+                                            <select id="table-sort-4" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-5">5</label>
+                                           </div>
+                                            <select id="table-sort-5" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-group mb-2">
+                                           <div class="input-group-prepend">
+                                            <label class="input-group-text" for="table-sort-6">6</label>
+                                           </div>
+                                            <select id="table-sort-6" class="form-control">
+                                                <option></option>
+                                                <option>Sector</option>
+                                                <option>Etc</option>
+                                            </select>
+                                        </div>
+                                    </div><!-- end right form column -->
+                                </div><!-- end row -->
+                            </form>
+                          </div><!-- end card-body -->
+                          <div class="card-footer d-flex justify-content-between">
+                            <button class="btn btn-outline-light">Clear</button>
+                            <button id="update-button" class="btn btn-primary btn-lg">Update</button>
+                          </div>
+                        </div><!-- end sorting options .card -->
+
+                        <table id="salary-table" class="table" style="text-align: center;">
+                          <thead>
+                              <th scope="col">First</th>
+                              <th scope="col">Last</th>
+                              <th scope="col">Salary</th>
+                              <th scope="col">Sector</th>
+                              <th scope="col">Employer</th>
+                          </thead>
+                          <tbody id="salary-table-body">
+                            <!-- dynamically generated -->
+                          </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="view-type-pie" role="tabpanel" aria-labelledby="view-type-pie-tab">
+                        <!-- PIE CHART HTML GOES HERE -->
+                        <canvas id="pie-chart"></canvas>
+                         <script>
+                            let myPieChart = document.getElementById('pie-chart').getContext('2d');
+                            let pieChart = new Chart(myPieChart, {
+                                type: 'pie',
+                                data: {
+                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                    datasets: [{
+                                        label: 'Dummy Data',
+                                        data: [12, 19, 3, 5, 2, 3],
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                    </script>
+                    </div>
+                    <div class="tab-pane fade" id="view-type-histogram" role="tabpanel" aria-labelledby="view-type-histogram-tab">
+                        <!-- HISTOGRAM CHART HTML -->
+                        <canvas id="histogram-chart"></canvas>
+                         <script>
+                            let myHistChart = document.getElementById('histogram-chart').getContext('2d');
+                            let histogram = new Chart(myHistChart, {
+                            type: 'bar',
+                                data: {
+                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                    datasets: [{
+                                        label: 'Dummy Data',
+                                        data: [12, 19, 3, 5, 2, 3],
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                    </script>
+                    </div>
+                    <div class="tab-pane fade" id="view-type-line" role="tabpanel" aria-labelledby="view-type-line-tab">
+                        <!-- LINE CHART HTML GOES HERE -->
+                        <canvas id="line-chart"></canvas>
+                        <script>
+                            let myLineChart = document.getElementById('line-chart').getContext('2d');
+                            let lineChart = new Chart(myLineChart, {
+                                type: 'line',
+                                data: {
+                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                    datasets: [{
+                                        label: 'Dummy Data',
+                                        data: [12, 19, 3, 5, 2, 3],
+                                        backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                        ],
+                                        borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)',
+                                            'rgba(153, 102, 255, 1)',
+                                            'rgba(255, 159, 64, 1)'
+                                        ],
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
         </main>
 
         <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
