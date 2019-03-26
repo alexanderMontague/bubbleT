@@ -35,7 +35,7 @@ function fullSalaryData(req, res) {
 }
 
 /*
- *   GET /api/queryData
+ *   POST /api/queryData
  *
  *   REQ: {
  *      body: {
@@ -61,8 +61,7 @@ function fullSalaryData(req, res) {
  *   }
  */
 function querySalaryData(req, res) {
-  // TODO: remove parse once coming from FE
-  const queryObj = JSON.parse(req.body.queryObj);
+  const queryObj = req.body.queryObj;
   let salaryFile = null;
 
   // TODO: does not encorporate searches without year...
@@ -203,4 +202,3 @@ module.exports = {
   testSalaryData,
   downloadSalaryData,
 };
- 
