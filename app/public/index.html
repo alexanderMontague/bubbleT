@@ -15,6 +15,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
+  <!--JQuery & Bootstrap-->
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+
   <!-- icons -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -23,6 +27,10 @@
 
   <!--Chart.js CDN-->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+
+  <!--DataTables for Pagination-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 </head>
 
 <body>
@@ -184,17 +192,6 @@
                           Taxable Benefits
                         </label>
                       </div>
-                      <hr>
-                      <div class="form-group row">
-                        <div class="col-4">
-                          <select class="form-control" id="table-perpage">
-                            <option value="25">25</option>
-                            <option value="50" selected>50</option>
-                            <option value="100">100</option>
-                          </select>
-                        </div>
-                        <label class="col pl-0">per page</label>
-                      </div>
                     </div><!-- end left form column -->
                     <div class="col-6">
                       <h4 class="text-info">Sort by</h4>
@@ -269,19 +266,16 @@
                 <button id="update-button" class="btn btn-primary btn-lg">Update</button>
               </div>
             </div><!-- end sorting options .card -->
-
-            <table id="salary-table" class="table" style="text-align: center;">
-              <thead>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Salary</th>
-                <th scope="col">Sector</th>
-                <th scope="col">Employer</th>
-              </thead>
-              <tbody id="salary-table-body">
-                <!-- dynamically generated -->
-              </tbody>
-            </table>
+            <div style="margin-bottom: 100px;">
+              <table id="salary-table" class="table" style="text-align: center; width: 100%;">
+                <thead id="salary-table-head">
+                  <!-- dynamically generated -->
+                </thead>
+                <tbody id="salary-table-body">
+                  <!-- dynamically generated -->
+                </tbody>
+              </table>
+            </div>
           </div>
           <div class="tab-pane fade" id="view-type-pie" role="tabpanel" aria-labelledby="view-type-pie-tab">
             <!-- PIE CHART HTML GOES HERE -->
@@ -448,9 +442,6 @@
   <footer class="fixed-bottom bg-dark text-white p-2 text-right text-muted">
     All Rights Reserved. &copy; 2019 <a href="about.html">bubbleT</a>
   </footer>
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
   <script src="./js/salaries.js"></script>
 </body>
-
 </html>
