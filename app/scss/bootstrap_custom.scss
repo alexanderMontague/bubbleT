@@ -15,6 +15,14 @@ $gray-800: #343a40;
 $gray-900: #212529;
 $black:    #000;
 
+$red: #F0E866;
+$dark-red: #AB4D6B;
+$blue: #66B5C7;
+$green: #89F3A6;
+$yellow: #F0E866;
+
+
+
 // Bootstrap includes
 // Required
 @import "node_modules/bootstrap/scss/functions";
@@ -27,3 +35,6 @@ $black:    #000;
 @import "node_modules/bootstrap/scss/images";
 @import "node_modules/bootstrap/scss/code";
 @import "node_modules/bootstrap/scss/grid";
+
+// Dashboard theme
+@import "bootstrap_dashboard"
