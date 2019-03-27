@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Site Metas -->
+    <title>bubbleT - Canadian Public Sector Salary Information</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-  <!-- Site Metas -->
-  <title>bubbleT - Canadian Public Sector Salary Information</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <!--JQuery and Bootstrap-->
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/popper.js/dist/umd/popper.min.js"
+    ></script>
+    <link rel="stylesheet" href="bootstrap_custom.css" />
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
 
   <!-- icons -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png"/>
 
-  <link rel="stylesheet" href="bootstrap_custom.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon.ico" />
 
-  <!--Chart.js CDN-->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
-</head>
-
+    <!--Chart.js CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    
 <body>
   <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
     <a class="navbar-brand p-0" href="index.html"><img src="assets/logo.png" alt="bubbleT"></a>
@@ -42,416 +48,565 @@
       </ul>
     </div>
   </nav><!-- end main menu -->
+=======
+    <!--DataTable CDN-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"
+    ></script>
+>>>>>>> e7cf44d05a43da857ee996e982465ca0b50604ec
 
-  <div class="container-fluid">
-    <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
-        <div class="sidebar-sticky">
-          <h4>Filters</h4>
-          <form id="filter-form" style="margin-left: 15px;">
-            <div>
-              <label for="filter-province">Province</label>
-            </div>
-            <div>
-              <select id="filter-province" class="form-control">
-                <option>Ontario</option>
-              </select>
-            </div>
+    <!-- Multiselect CDN-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"
+      type="text/css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"
+    ></script>
+  </head>
 
-            <div>
-              <label style="margin-top: 20px;" for="filter-year">Year</label>
-            </div>
-            <div>
-              <select id="filter-year" class="form-control">
-                <option>2013</option>
-                <option>2012</option>
-                <option>2011</option>
-                <option>2010</option>
-              </select>
-            </div>
+  <body>
+    <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
+      <a class="navbar-brand p-0" href="index.html"><img src="assets/logo.png" alt="bubbleT"/></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+          <li class="nav-item active"><a class="nav-link" href="index.html">home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">about</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">faq</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- end main menu -->
 
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
+          <div class="sidebar-sticky">
+            <h4>Filters</h4>
+            <form id="filter-form" style="margin-left: 15px;">
+              <div><label for="filter-province">Province</label></div>
+              <div>
+                <select id="filter-province" class="form-control">
+                  <option>Ontario</option>
+                </select>
+              </div>
 
+              <div><label style="margin-top: 20px;" for="filter-year">Year</label></div>
+              <div>
+                <select id="filter-year" class="form-control" multiple="multiple">
+                  <option selected>2013</option>
+                  <option>2012</option>
+                  <option>2011</option>
+                  <option>2010</option>
+                </select>
+              </div>
+
+            <div><label style="margin-top: 20px;" for="filter-sector">Sector</label></div>
             <div>
-              <label style="margin-top: 20px;" for="filter-sector">Sector</label>
-            </div>
-            <div>
-              <select id="filter-sector" class="form-control">
+              <select id="filter-sector" class="form-control" multiple="multiple">
                 <option>Universities</option>
                 <option>Colleges</option>
                 <option>School Boards</option>
-                <option>Hospitals and Boards of Public Health</option>
+                <option value="Hospitals and Boards of Public Health">Hospitals</option>
               </select>
             </div>
+              
+              <div><label style="margin-top: 20px;" for="filter-salary">Salary Range</label></div>
 
-            <div>
-              <label style="margin-top: 20px;" for="filter-salary">Salary Range</label>
-            </div>
-
-            <div>
-              <div class="col-3" style="width: 100%; display: inline-block;">Min: </div>
-              <div class="col-8" style="width: 100%; display: inline-block;"><input type="number" min="0"
-                  id="min-salary"></div>
-            </div>
-            <div>
-              <div class="col-3" style="width: 100%; display: inline-block;">Max: </div>
-              <div class="col-8" style="width: 100%; display: inline-block;"><input type="number" min="0"
-                  id="max-salary"></div>
-            </div>
-            <div><label style="margin-top: 20px;" for="filter-employer">Employer</label></div>
-            <div><input type="text" style="width: 100%" id="filter-employer"></div>
-
-            <label style="margin-top: 20px;" for="filter-fname">First Name</label>
-            <input type="text" style="width: 100%" id="filter-fname">
-
-            <label style="margin-top: 20px;" for="filter-lname">Last Name</label>
-            <input type="text" style="width: 100%" id="filter-lname">
-
-            <button id="filter-button" class="btn btn-secondary" style="margin-top: 20px; width: 100%;">Update
-              Filters</button>
-          </form>
-        </div>
-      </nav><!-- end filter menu -->
-
-      <main role="main" class="col-md-8 px-4">
-        <div class="tab-content" id="view-type-tabContent">
-          <div class="tab-pane fade show active" id="view-type-table" role="tabpanel"
-            aria-labelledby="view-type-table-tab">
-            <div id="table-menu" class="row mb-2">
-              <div class="col-8">
-                <div class="mb-0 alert alert-warning alert-dismissible fade show" role="alert">
-                  <strong>Sample alert!</strong> This is a message to the user.
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+              <div>
+                <div class="col-3" style="width: 100%; display: inline-block;">Min:</div>
+                <div class="col-8" style="width: 100%; display: inline-block;">
+                  <input style="width: 120px" type="number" min="0" id="min-salary" />
                 </div>
               </div>
-              <div class="col-4" style="margin: auto;">
-                <a class="btn btn-secondary" data-toggle="collapse" href="#sorting-options" role="button"
-                  style="width: 100%;" aria-expanded="false" aria-controls="sorting-options">Sorting Options <i
-                    class="fas fa-cog"></i></a>
+              <div>
+                <div class="col-3" style="width: 100%; display: inline-block;">Max:</div>
+                <div class="col-8" style="width: 100%; display: inline-block; margin-top: 10px;">
+                  <input style="width: 120px" type="number" min="0" id="max-salary" />
+                </div>
               </div>
-            </div><!-- end table menu -->
-            <div id="sorting-options" class="collapse card text-white bg-secondary mb-2">
-              <div class="card-body">
-                <form method="post" action="#">
-                  <div class="row">
-                    <div class="col-6">
-                      <h4 class="text-info">Show columns</h4>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="table-show-all">
-                        <label class="form-check-label" for="table-show-all">
-                          <strong>Select All</strong>
-                        </label>
+              <div><label style="margin-top: 20px;" for="filter-employer">Employer</label></div>
+              <div><input type="text" style="width: 100%" id="filter-employer" /></div>
+
+              <label style="margin-top: 20px;" for="filter-fname">First Name</label>
+              <input type="text" style="width: 100%" id="filter-fname" />
+
+              <label style="margin-top: 20px;" for="filter-lname">Last Name</label>
+              <input type="text" style="width: 100%" id="filter-lname" />
+
+              <button
+                id="filter-button"
+                class="btn btn-secondary"
+                style="margin-top: 20px; width: 100%;"
+              >
+                Update Filters
+              </button>
+            </form>
+          </div>
+        </nav>
+        <!-- end filter menu -->
+
+        <main role="main" class="col-md-8 px-4">
+          <div class="tab-content" id="view-type-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="view-type-table"
+              role="tabpanel"
+              aria-labelledby="view-type-table-tab"
+            >
+              <div id="table-menu" class="row mb-2">
+                <div class="col-8">
+                  <div class="mb-0 alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Sample alert!</strong> This is a message to the user.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-4" style="margin: auto;">
+                  <a
+                    class="btn btn-secondary"
+                    data-toggle="collapse"
+                    href="#sorting-options"
+                    role="button"
+                    style="width: 100%;"
+                    aria-expanded="false"
+                    aria-controls="sorting-options"
+                    >Sorting Options <i class="fas fa-cog"></i
+                  ></a>
+                </div>
+              </div>
+              <!-- end table menu -->
+              <div id="sorting-options" class="collapse card text-white bg-secondary mb-2">
+                <div class="card-body">
+                  <form method="post" action="#">
+                    <div class="row">
+                      <div class="col-6">
+                        <h4 class="text-info">Show columns</h4>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="table-show-all"
+                          />
+                          <label class="form-check-label" for="table-show-all">
+                            <strong>Select All</strong>
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="table-show-fname"
+                          />
+                          <label class="form-check-label" for="table-show-fname"> Sector </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="table-show-salary"
+                          />
+                          <label class="form-check-label" for="table-show-salary"> Salary </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="table-show-employ"
+                          />
+                          <label class="form-check-label" for="table-show-employ"> Employer </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="table-show-fname"
+                          />
+                          <label class="form-check-label" for="table-show-fname">
+                            First Name
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="table-show-lname"
+                          />
+                          <label class="form-check-label" for="table-show-lname"> Last Name </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="table-show-title"
+                          />
+                          <label class="form-check-label" for="table-show-title"> Job Title </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="table-show-tb"
+                          />
+                          <label class="form-check-label" for="table-show-tb">
+                            Taxable Benefits
+                          </label>
+                        </div>
                       </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="table-show-fname">
-                        <label class="form-check-label" for="table-show-fname">
-                          Sector
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="table-show-salary">
-                        <label class="form-check-label" for="table-show-salary">
-                          Salary
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="table-show-employ">
-                        <label class="form-check-label" for="table-show-employ">
-                          Employer
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="table-show-fname">
-                        <label class="form-check-label" for="table-show-fname">
-                          First Name
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="table-show-lname">
-                        <label class="form-check-label" for="table-show-lname">
-                          Last Name
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="table-show-title">
-                        <label class="form-check-label" for="table-show-title">
-                          Job Title
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="table-show-tb">
-                        <label class="form-check-label" for="table-show-tb">
-                          Taxable Benefits
-                        </label>
-                      </div>
-                      <hr>
-                      <div class="form-group row">
-                        <div class="col-4">
-                          <select class="form-control" id="table-perpage">
-                            <option value="25">25</option>
-                            <option value="50" selected>50</option>
-                            <option value="100">100</option>
+                      <!-- end left form column -->
+                      <div class="col-6">
+                        <h4 class="text-info">Sort by</h4>
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="table-sort-1">Year</label>
+                          </div>
+                          <select id="table-sort-1" class="form-control">
+                            <option>2013</option>
+                            <option>2012</option>
+                            <option>2011</option>
+                            <option>2010</option>
                           </select>
                         </div>
-                        <label class="col pl-0">per page</label>
-                      </div>
-                    </div><!-- end left form column -->
-                    <div class="col-6">
-                      <h4 class="text-info">Sort by</h4>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-
-                          <label class="input-group-text" for="table-sort-1">Year</label>
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="table-sort-2">2</label>
+                          </div>
+                          <select id="table-sort-2" class="form-control">
+                            <option></option>
+                            <option>Sector</option>
+                            <option>Etc</option>
+                          </select>
                         </div>
-                        <select id="table-sort-1" class="form-control">
-                          <option>2013</option>
-                          <option>2012</option>
-                          <option>2011</option>
-                          <option>2010</option>
-                        </select>
-                      </div>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="table-sort-2">2</label>
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="table-sort-3">3</label>
+                          </div>
+                          <select id="table-sort-3" class="form-control">
+                            <option></option>
+                            <option>Sector</option>
+                            <option>Etc</option>
+                          </select>
                         </div>
-                        <select id="table-sort-2" class="form-control">
-                          <option></option>
-                          <option>Sector</option>
-                          <option>Etc</option>
-                        </select>
-                      </div>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="table-sort-3">3</label>
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="table-sort-4">4</label>
+                          </div>
+                          <select id="table-sort-4" class="form-control">
+                            <option></option>
+                            <option>Sector</option>
+                            <option>Etc</option>
+                          </select>
                         </div>
-                        <select id="table-sort-3" class="form-control">
-                          <option></option>
-                          <option>Sector</option>
-                          <option>Etc</option>
-                        </select>
-                      </div>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="table-sort-4">4</label>
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="table-sort-5">5</label>
+                          </div>
+                          <select id="table-sort-5" class="form-control">
+                            <option></option>
+                            <option>Sector</option>
+                            <option>Etc</option>
+                          </select>
                         </div>
-                        <select id="table-sort-4" class="form-control">
-                          <option></option>
-                          <option>Sector</option>
-                          <option>Etc</option>
-                        </select>
-                      </div>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="table-sort-5">5</label>
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <label class="input-group-text" for="table-sort-6">6</label>
+                          </div>
+                          <select id="table-sort-6" class="form-control">
+                            <option></option>
+                            <option>Sector</option>
+                            <option>Etc</option>
+                          </select>
                         </div>
-                        <select id="table-sort-5" class="form-control">
-                          <option></option>
-                          <option>Sector</option>
-                          <option>Etc</option>
-                        </select>
                       </div>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <label class="input-group-text" for="table-sort-6">6</label>
-                        </div>
-                        <select id="table-sort-6" class="form-control">
-                          <option></option>
-                          <option>Sector</option>
-                          <option>Etc</option>
-                        </select>
-                      </div>
-                    </div><!-- end right form column -->
-                  </div><!-- end row -->
-                </form>
-              </div><!-- end card-body -->
-              <div class="card-footer d-flex justify-content-between">
-                <button class="btn btn-outline-light">Clear</button>
-                <button id="update-button" class="btn btn-primary btn-lg">Update</button>
+                      <!-- end right form column -->
+                    </div>
+                    <!-- end row -->
+                  </form>
+                </div>
+                <!-- end card-body -->
+                <div class="card-footer d-flex justify-content-between">
+                  <button class="btn btn-outline-light">Clear</button>
+                  <button id="update-button" class="btn btn-primary btn-lg">Update</button>
+                </div>
               </div>
-            </div><!-- end sorting options .card -->
+              <!-- end sorting options .card -->
 
-            <table id="salary-table" class="table" style="text-align: center;">
-              <thead>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Salary</th>
-                <th scope="col">Sector</th>
-                <th scope="col">Employer</th>
-              </thead>
-              <tbody id="salary-table-body">
-                <!-- dynamically generated -->
-              </tbody>
-            </table>
+              <!--Dynamically Generated DataTable-->
+              <div style="margin-bottom: 100px;">
+                <table id="salary-table" class="table" style="text-align: center; width: 100%;">
+                  <thead id="salary-table-head">
+                    <!-- dynamically generated -->
+                  </thead>
+                  <tbody id="salary-table-body">
+                    <!-- dynamically generated -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="view-type-pie"
+              role="tabpanel"
+              aria-labelledby="view-type-pie-tab"
+            >
+              <!-- PIE CHART HTML GOES HERE -->
+              <canvas id="pie-chart"></canvas>
+              <script>
+                let myPieChart = document.getElementById('pie-chart').getContext('2d');
+                let pieChart = new Chart(myPieChart, {
+                  type: 'pie',
+                  data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [
+                      {
+                        label: 'Dummy Data',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)',
+                        ],
+                        borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)',
+                        ],
+                        borderWidth: 1,
+                      },
+                    ],
+                  },
+                  options: {
+                    scales: {
+                      yAxes: [
+                        {
+                          ticks: {
+                            beginAtZero: true,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                });
+              </script>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="view-type-histogram"
+              role="tabpanel"
+              aria-labelledby="view-type-histogram-tab"
+            >
+              <!-- HISTOGRAM CHART HTML -->
+              <canvas id="histogram-chart"></canvas>
+              <script>
+                let myHistChart = document.getElementById('histogram-chart').getContext('2d');
+                let histogram = new Chart(myHistChart, {
+                  type: 'bar',
+                  data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [
+                      {
+                        label: 'Dummy Data',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)',
+                        ],
+                        borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)',
+                        ],
+                        borderWidth: 1,
+                      },
+                    ],
+                  },
+                  options: {
+                    scales: {
+                      yAxes: [
+                        {
+                          ticks: {
+                            beginAtZero: true,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                });
+              </script>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="view-type-line"
+              role="tabpanel"
+              aria-labelledby="view-type-line-tab"
+            >
+              <!-- LINE CHART HTML GOES HERE -->
+              <canvas id="line-chart"></canvas>
+              <script>
+                let myLineChart = document.getElementById('line-chart').getContext('2d');
+                let lineChart = new Chart(myLineChart, {
+                  type: 'line',
+                  data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [
+                      {
+                        label: 'Dummy Data',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)',
+                        ],
+                        borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)',
+                        ],
+                        borderWidth: 1,
+                      },
+                    ],
+                  },
+                  options: {
+                    scales: {
+                      yAxes: [
+                        {
+                          ticks: {
+                            beginAtZero: true,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                });
+              </script>
+            </div>
           </div>
-          <div class="tab-pane fade" id="view-type-pie" role="tabpanel" aria-labelledby="view-type-pie-tab">
-            <!-- PIE CHART HTML GOES HERE -->
-            <canvas id="pie-chart"></canvas>
-            <script>
-              let myPieChart = document.getElementById('pie-chart').getContext('2d');
-              let pieChart = new Chart(myPieChart, {
-                type: 'pie',
-                data: {
-                  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                  datasets: [{
-                    label: 'Dummy Data',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  scales: {
-                    yAxes: [{
-                      ticks: {
-                        beginAtZero: true
-                      }
-                    }]
-                  }
-                }
-              });
-            </script>
-          </div>
-          <div class="tab-pane fade" id="view-type-histogram" role="tabpanel" aria-labelledby="view-type-histogram-tab">
-            <!-- HISTOGRAM CHART HTML -->
-            <canvas id="histogram-chart"></canvas>
-            <script>
-              let myHistChart = document.getElementById('histogram-chart').getContext('2d');
-              let histogram = new Chart(myHistChart, {
-                type: 'bar',
-                data: {
-                  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                  datasets: [{
-                    label: 'Dummy Data',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  scales: {
-                    yAxes: [{
-                      ticks: {
-                        beginAtZero: true
-                      }
-                    }]
-                  }
-                }
-              });
-            </script>
-          </div>
-          <div class="tab-pane fade" id="view-type-line" role="tabpanel" aria-labelledby="view-type-line-tab">
-            <!-- LINE CHART HTML GOES HERE -->
-            <canvas id="line-chart"></canvas>
-            <script>
-              let myLineChart = document.getElementById('line-chart').getContext('2d');
-              let lineChart = new Chart(myLineChart, {
-                type: 'line',
-                data: {
-                  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                  datasets: [{
-                    label: 'Dummy Data',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  scales: {
-                    yAxes: [{
-                      ticks: {
-                        beginAtZero: true
-                      }
-                    }]
-                  }
-                }
-              });
-            </script>
-          </div>
-        </div>
-      </main>
+        </main>
 
-      <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
-        <div class="sidebar-sticky">
-          <a href="#" id="downloadSalaryButton" class="btn btn-lg btn-primary w-100"><span>Download <i
-                class="fas fa-download"></i></span></a>
-          <hr>
-          <nav class="nav nav-pills nav-fill flex-column" id="view-type" role="tablist" aria-orientation="vertical">
-            <a class="nav-item nav-link active" id="view-type-table-tab" data-toggle="pill" href="#view-type-table"
-              role="tab" aria-controls="view-type-table" aria-selected="true">
-              <i class="display-3 fas fa-table"></i><br>
-              Table
-            </a>
-            <a class="nav-item nav-link" id="view-type-pie-tab" data-toggle="pill" href="#view-type-pie" role="tab"
-              aria-controls="view-type-pie" aria-selected="true">
-              <i class="display-3 fas fa-chart-pie"></i><br>
-              Pie Chart
-            </a>
-            <a class="nav-item nav-link" id="view-type-histogram-tab" data-toggle="pill" href="#view-type-histogram"
-              role="tab" aria-controls="view-type-histogram" aria-selected="true">
-              <i class="display-3 fas fa-chart-bar"></i><br>
-              Histogram</a>
-            <a class="nav-item nav-link" id="view-type-line-tab" data-toggle="pill" href="#view-type-line" role="tab"
-              aria-controls="view-type-line" aria-selected="true">
-              <i class="display-3 fas fa-chart-line"></i><br>
-              Line Graph
-            </a>
-          </nav>
-        </div><!-- end sidebar-sticky -->
-      </nav><!-- end right side menu -->
-    </div><!-- end row -->
-  </div><!-- end container-fluid -->
-  <footer class="fixed-bottom bg-dark text-white p-2 text-right text-muted">
-    All Rights Reserved. &copy; 2019 <a href="about.html">bubbleT</a>
-  </footer>
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
-  <script src="./js/salaries.js"></script>
-</body>
+        <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
+          <div class="sidebar-sticky">
+            <a href="#" id="downloadSalaryButton" class="btn btn-lg btn-primary w-100"
+              ><span>Download <i class="fas fa-download"></i></span
+            ></a>
+            <hr />
+            <nav
+              class="nav nav-pills nav-fill flex-column"
+              id="view-type"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <a
+                class="nav-item nav-link active"
+                id="view-type-table-tab"
+                data-toggle="pill"
+                href="#view-type-table"
+                role="tab"
+                aria-controls="view-type-table"
+                aria-selected="true"
+              >
+                <i class="display-3 fas fa-table"></i><br />
+                Table
+              </a>
+              <a
+                class="nav-item nav-link"
+                id="view-type-pie-tab"
+                data-toggle="pill"
+                href="#view-type-pie"
+                role="tab"
+                aria-controls="view-type-pie"
+                aria-selected="true"
+              >
+                <i class="display-3 fas fa-chart-pie"></i><br />
+                Pie Chart
+              </a>
+              <a
+                class="nav-item nav-link"
+                id="view-type-histogram-tab"
+                data-toggle="pill"
+                href="#view-type-histogram"
+                role="tab"
+                aria-controls="view-type-histogram"
+                aria-selected="true"
+              >
+                <i class="display-3 fas fa-chart-bar"></i><br />
+                Histogram</a
+              >
+              <a
+                class="nav-item nav-link"
+                id="view-type-line-tab"
+                data-toggle="pill"
+                href="#view-type-line"
+                role="tab"
+                aria-controls="view-type-line"
+                aria-selected="true"
+              >
+                <i class="display-3 fas fa-chart-line"></i><br />
+                Line Graph
+              </a>
+            </nav>
+          </div>
+          <!-- end sidebar-sticky -->
+        </nav>
+        <!-- end right side menu -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container-fluid -->
+    <footer class="fixed-bottom bg-dark text-white p-2 text-muted d-flex justify-content-between">
+      <span>All data is from the <a href="https://www.ontario.ca/data/public-sector-salary-disclosure-data">ontario.ca website</a>.</span>
+      <span>All Rights Reserved. &copy; 2019 <a href="about.html">bubbleT</a></span>
+    </footer>
 
+    <!-- SCRIPTS -->
+    <script src="./js/salaries.js"></script>
+    <script src="/reload/reload.js"></script>
+  </body>
 </html>

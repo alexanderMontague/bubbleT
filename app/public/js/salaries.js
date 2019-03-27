@@ -3,208 +3,147 @@
 // GLOBALS
 // table data
 let tableData = [];
+let dataTable = null;
 // table element reference
-const salaryTable = document.getElementById('salary-table');
-// records per page
-let perPage = document.getElementById('table-perpage').value;
+const salaryTableHead = document.getElementById('salary-table-head');
+const salaryTableBody = document.getElementById('salary-table-body');
 
+// on initial page load
 $(document).ready(function() {
-    alert("foo");
-    let selectedYear = document.getElementById('filter-year').value;
+  // set multiselects
+  $('#filter-year').multiselect();
+  $('#filter-sector').multiselect();
 
-    if (selectedYear === undefined || selectedYear === 0) {
-      selectedYear = 2013;
-    }
-  
-    $.ajax({
-      type: 'get',
-      url: '/api/salaryData',
-      data: { year: selectedYear },
-      success: data => {
-        tableData = data.salaryData;
-        renderTable();
-      },
-      fail: err => {
-        console.log('Initial table data fetch failed', err);
-      },
-    });
-});
+  let selectedYear = document.getElementById('filter-year').value;
 
-const renderTable = () => {
-  // set headers
-  salaryTable.innerHTML = `
-    <thead>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Salary</th>
-      <th scope="col">Sector</th>
-      <th scope="col">Employer</th>
-    </thead>
-  `;
-
-  // set body data
-  for (let i = 0; i < perPage; i++) {
-    const newRow = salaryTable.insertRow(i + 1);
-    newRow.innerHTML = `
-      <td>${tableData[i].first_name.content}</td>
-      <td>${tableData[i].last_name.content}</td>
-      <td>${tableData[i].salary_paid.content}</td>
-      <td>${(tableData[i].sector || tableData[i]._sector).content}</td>
-      <td>${tableData[i].employer.content}</td>
-    `;
+  if (selectedYear === undefined || selectedYear === 0) {
+    selectedYear = 2013;
   }
-};
-document.getElementById('update-button').onclick = () => {
-  // update per page value
-  perPage = document.getElementById('table-perpage').value;
-
-  // re-render table
-  renderTable();
-
-  console.log("Updated!");
-};
-
-document.getElementById('filter-button').onclick = () => {
-  // update per page value
-  perPage = document.getElementById('table-perpage').value;
-
-  let fyear = document.getElementById('filter-year').value;
 
   $.ajax({
     type: 'get',
-    url: '/api/queryData',
+    url: '/api/salaryData',
     data: {
-      queryObj: {
-        year: fyear,
-        sector: universities,
-        salary: {
-          min: 0,
-          max: 1000000
-        },
-        employer: "University of Guelph",
-        firstName: null,
-        lastName: null,
-        exact: null
-      }
+      year: selectedYear,
     },
     success: data => {
-      console.log("On FE " + data.queryData);
-      tableData = data.queryData;
+      tableData = data.salaryData;
       renderTable();
+      dataTable = $('#salary-table').dataTable({
+        bRetrieve: true,
+        searching: false,
+      });
     },
-    fail: err => {
+    error: err => {
       console.log('Initial table data fetch failed', err);
     },
   });
+});
 
-  console.log("Filtered!");
+// Function that re-renders the table when needed
+const renderTable = () => {
+  let numRows = tableData.length;
+
+  // reset table
+  salaryTableHead.innerHTML = '';
+  salaryTableBody.innerHTML = '';
+
+  // set headers
+  salaryTableHead.innerHTML = `
+    <tr>
+        <th scope="col">Year</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Sector</th>
+        <th scope="col">Employer</th>
+    </tr>`;
+
+  if (numRows > 5000) {
+    numRows = 5000;
+  }
+
+  // set body data
+  for (let i = 0; i < numRows; i++) {
+    const newRow = salaryTableBody.insertRow(i);
+    newRow.innerHTML = `
+            <td>${tableData[i].calendar_year.content}</td>
+            <td>${tableData[i].first_name.content}</td>
+            <td>${tableData[i].last_name.content}</td>
+            <td>${tableData[i].salary_paid.content}</td>
+            <td>${(tableData[i].sector || tableData[i]._sector).content}</td>
+            <td>${tableData[i].employer.content}</td>`;
+  }
 };
 
+// sorting button click handler
+document.getElementById('update-button').onclick = () => {
+  // re-render table
+  renderTable();
+  console.log('Updated!');
+};
 
-const testData = [
-  {
-    _sector: {
-      columnName: '\ufeffSector',
-      content: 'Universities',
+// filter button click handler
+document.getElementById('filter-button').onclick = event => {
+  const selectedYear = $('#filter-year').val();
+  const selectedSector = $('#filter-sector').val();
+  const salaryMin = document.getElementById('min-salary').value;
+  const salaryMax = document.getElementById('max-salary').value;
+  const selectedEmployer = document.getElementById('filter-employer').value;
+  const firstName = document.getElementById('filter-fname').value;
+  const lastName = document.getElementById('filter-lname').value;
+
+  event.preventDefault();
+
+  // setup salary
+  let salary = {};
+  if (!salaryMin && !salaryMax) {
+    salary = null;
+  } else {
+    salary.min = salaryMin || 0;
+    salary.max = salaryMax || 99999999;
+  }
+
+  // create query object
+  const queryObj = {
+    year: selectedYear.length !== 0 ? selectedYear : null,
+    sector: selectedSector.length !== 0 ? selectedSector : null,
+    salary,
+    employer: selectedEmployer || null,
+    firstName: firstName || null,
+    lastName: lastName || null,
+    exact: null,
+  };
+
+  $.ajax({
+    type: 'post',
+    url: '/api/queryData',
+    data: {
+      queryObj,
     },
-    last_name: {
-      columnName: 'Last Name',
-      content: 'ADAMOWICZ',
+    success: data => {
+      tableData = data.queryData;
+
+      // Destroying DataTable before regenerating
+      if ($.fn.DataTable.isDataTable('#salary-table')) {
+        $('#salary-table')
+          .DataTable()
+          .destroy();
+        console.log('Destroyed the table!');
+      }
+
+      renderTable();
+
+      $('#salary-table').dataTable({
+        bRetrieve: true,
+        searching: false,
+      });
     },
-    first_name: {
-      columnName: 'First Name',
-      content: 'SARAH JEAN',
+    error: err => {
+      console.log('Initial table data fetch failed', err);
     },
-    salary_paid: {
-      columnName: 'Salary Paid',
-      content: '100245.7',
-    },
-    taxable_benefits: {
-      columnName: 'Taxable Benefits',
-      content: '325.06',
-    },
-    employer: {
-      columnName: 'Employer',
-      content: 'University of Guelph',
-    },
-    job_title: {
-      columnName: 'Job Title',
-      content: 'Assistant Professor',
-    },
-    calendar_year: {
-      columnName: 'Calendar Year',
-      content: '2013',
-    },
-  },
-  {
-    _sector: {
-      columnName: '\ufeffSector',
-      content: 'Universities',
-    },
-    last_name: {
-      columnName: 'Last Name',
-      content: 'EDWARDS',
-    },
-    first_name: {
-      columnName: 'First Name',
-      content: 'MICHELLE',
-    },
-    salary_paid: {
-      columnName: 'Salary Paid',
-      content: '100035.25',
-    },
-    taxable_benefits: {
-      columnName: 'Taxable Benefits',
-      content: '321.37',
-    },
-    employer: {
-      columnName: 'Employer',
-      content: 'University of Guelph',
-    },
-    job_title: {
-      columnName: 'Job Title',
-      content: 'Assistant Librarian',
-    },
-    calendar_year: {
-      columnName: 'Calendar Year',
-      content: '2013',
-    },
-  },
-  {
-    _sector: {
-      columnName: '\ufeffSector',
-      content: 'Universities',
-    },
-    last_name: {
-      columnName: 'Last Name',
-      content: 'RATNASINGHAM',
-    },
-    first_name: {
-      columnName: 'First Name',
-      content: 'SUJEEVAN',
-    },
-    salary_paid: {
-      columnName: 'Salary Paid',
-      content: '100263.36',
-    },
-    taxable_benefits: {
-      columnName: 'Taxable Benefits',
-      content: '26.76',
-    },
-    employer: {
-      columnName: 'Employer',
-      content: 'University of Guelph',
-    },
-    job_title: {
-      columnName: 'Job Title',
-      content: 'Research Associate',
-    },
-    calendar_year: {
-      columnName: 'Calendar Year',
-      content: '2013',
-    },
-  },
-];
+  });
+};
 
 const dataType = 'csv'; // replace with getting value from FE element
 // download salary button
@@ -212,7 +151,10 @@ document.getElementById('downloadSalaryButton').onclick = () => {
   $.ajax({
     type: 'post',
     url: '/api/downloadData',
-    data: { type: dataType, data: testData }, // also get data from FE after initial API call to get data
+    data: {
+      type: dataType,
+      data: tableData,
+    }, // also get data from FE after initial API call to get data
     success: data => {
       const hiddenLink = document.createElement('a');
       hiddenLink.href =
@@ -222,7 +164,8 @@ document.getElementById('downloadSalaryButton').onclick = () => {
       hiddenLink.download = `salaryData.${dataType === 'json' ? 'json' : 'csv'}`;
       hiddenLink.click();
     },
-    fail: err => {
+    error: err => {
+      alert("File is too large! Please create a more detailed query.")
       console.log('File download failed', err);
     },
   });

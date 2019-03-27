@@ -35,13 +35,13 @@ function fullSalaryData(req, res) {
 }
 
 /*
- *   GET /api/queryData
+ *   POST /api/queryData
  *
  *   REQ: {
  *      body: {
  *        queryObj: {
- *          year: String || Number || null,
- *          sector: String || null,
+ *          year: Array || null,
+ *          sector: Array || null,
  *          salary: {
  *            min: String || Number,
  *            max: String || Number
@@ -61,13 +61,15 @@ function fullSalaryData(req, res) {
  *   }
  */
 function querySalaryData(req, res) {
-  // TODO: remove parse once coming from FE
-  const queryObj = JSON.parse(req.body.queryObj);
-  let salaryFile = null;
+  const queryObj = req.body.queryObj;
+  let salaryFile = [];
 
   // TODO: does not encorporate searches without year...
   try {
-    salaryFile = eval('ontario' + queryObj.year);
+    // salaryFile = eval('ontario' + queryObj.year);
+    for (let year of queryObj.year) {
+      salaryFile = [...salaryFile, ...eval('ontario' + year)];
+    }
     // salaryFile = testData;
   } catch (error) {
     console.log('Salary File Unknown', error);
@@ -76,10 +78,7 @@ function querySalaryData(req, res) {
 
   const queriedData = salaryFile.filter(record => {
     // sector filter
-    if (
-      queryObj.sector &&
-      (record.sector || record._sector).content.toLowerCase() !== queryObj.sector.toLowerCase()
-    ) {
+    if (queryObj.sector && !queryObj.sector.includes((record.sector || record._sector).content)) {
       return false;
     }
 
@@ -203,4 +202,3 @@ module.exports = {
   testSalaryData,
   downloadSalaryData,
 };
- 
