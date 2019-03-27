@@ -165,8 +165,164 @@ document.getElementById('downloadSalaryButton').onclick = () => {
       hiddenLink.click();
     },
     error: err => {
-      alert("File is too large! Please create a more detailed query.")
+      alert('File is too large! Please create a more detailed query.');
       console.log('File download failed', err);
     },
   });
+};
+
+// CHART JS SECTION
+
+// Pie Chart
+let sectorData = {};
+let pieChart = null;
+let myPieChart = document.getElementById('pie-chart').getContext('2d');
+let pieChartTitle = document.getElementById('pie-chart-title');
+
+// create pie chart
+const updateChart = () => {
+  if (pieChart !== null) {
+    pieChart.destroy();
+  }
+  pieChart = new Chart(myPieChart, {
+    type: 'pie',
+    data: {
+      labels: Object.keys(sectorData),
+      datasets: [
+        {
+          data: Object.values(sectorData),
+          backgroundColor: [
+            '#3366CC',
+            '#DC3912',
+            '#FF9900',
+            '#109618',
+            '#990099',
+            '#3B3EAC',
+            '#0099C6',
+            '#DD4477',
+            '#66AA00',
+            '#B82E2E',
+            '#316395',
+            '#994499',
+            '#22AA99',
+            '#AAAA11',
+            '#6633CC',
+            '#E67300',
+            '#8B0707',
+            '#329262',
+            '#5574A6',
+            '#3B3EAC',
+          ],
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
+};
+
+// data cleansing for default sector
+document.getElementById('view-type-pie-tab').onclick = () => {
+  sectorData = {};
+  for (let i = 0; i < tableData.length; i++) {
+    // if sector is not there yet
+    const sectorKey = (tableData[i].sector || tableData[i]._sector).content.replace(/&amp;/g, '&');
+    if (!sectorData[sectorKey]) {
+      sectorData[sectorKey] = 1;
+    } else {
+      sectorData[sectorKey]++;
+    }
+  }
+  updateChart();
+};
+
+// sector view
+document.getElementById('pie-sector-button').onclick = () => {
+  sectorData = {};
+  pieChartTitle.innerHTML = 'Number of Individuals Making Over $100k by Sector';
+  for (let i = 0; i < tableData.length; i++) {
+    // if sector is not there yet
+    const sectorKey = (tableData[i].sector || tableData[i]._sector).content.replace(/&amp;/g, '&');
+    if (!sectorData[sectorKey]) {
+      sectorData[sectorKey] = 1;
+    } else {
+      sectorData[sectorKey]++;
+    }
+  }
+  updateChart();
+};
+
+// employer view
+document.getElementById('pie-employer-button').onclick = () => {
+  sectorData = {};
+  pieChartTitle.innerHTML = 'Number of Individuals Making Over $100k by Employer';
+  for (let i = 0; i < tableData.length; i++) {
+    // if employer is not there yet
+    const employerKey = tableData[i].employer.content.replace(/&amp;/g, '&');
+    if (!sectorData[employerKey]) {
+      sectorData[employerKey] = 1;
+    } else {
+      sectorData[employerKey]++;
+    }
+  }
+  updateChart();
+};
+
+// employer view
+document.getElementById('pie-year-button').onclick = () => {
+  sectorData = {};
+  pieChartTitle.innerHTML = 'Number of Individuals Making Over $100k per Year';
+  for (let i = 0; i < tableData.length; i++) {
+    // if employer is not there yet
+    const yearKey = tableData[i].calendar_year.content;
+    if (!sectorData[yearKey]) {
+      sectorData[yearKey] = 1;
+    } else {
+      sectorData[yearKey]++;
+    }
+  }
+  updateChart();
+};
+
+// employer view
+document.getElementById('pie-salary-button').onclick = () => {
+  pieChartTitle.innerHTML = 'Number of Individuals Contained in each Salary Range';
+  sectorData = {
+    '$100k - $125k': 0,
+    '$125k - $150k': 0,
+    '$150k - $200k': 0,
+    '$200k - $250k': 0,
+    '$250k - $300k': 0,
+    '$300k - $350k': 0,
+    '$350k+': 0,
+  };
+  for (let i = 0; i < tableData.length; i++) {
+    const currSalary = Number(tableData[i].salary_paid.content);
+    if (currSalary < 125e3) {
+      sectorData['$100k - $125k']++;
+    } else if (currSalary >= 125e3 && currSalary < 150e3) {
+      sectorData['$125k - $150k']++;
+    } else if (currSalary >= 150e3 && currSalary < 200e3) {
+      sectorData['$150k - $200k']++;
+    } else if (currSalary >= 200e3 && currSalary < 250e3) {
+      sectorData['$200k - $250k']++;
+    } else if (currSalary >= 250e3 && currSalary < 300e3) {
+      sectorData['$250k - $300k']++;
+    } else if (currSalary >= 300e3 && currSalary < 350e3) {
+      sectorData['$300k - $350k']++;
+    } else {
+      sectorData['$350k+']++;
+    }
+  }
+  updateChart();
 };
