@@ -5,6 +5,19 @@
 .bg-secondary {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
 
+.btn.btn-linkedin {
+  background-color: #0E76A8;
+  color: #fff; }
+
+.btn.btn-linkedin:hover,
+.btn.btn-linkedin:active,
+.btn.btn-linkedin:visited {
+  color: #fff; }
+
+label {
+  color: #F94741;
+  font-weight: 700; }
+
 body {
   background-color: #fff; }
 
