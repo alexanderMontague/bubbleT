@@ -170,8 +170,6 @@ function createAlert(type, text, title){
     </div>');
 }
 
-const dataType = 'csv'; // replace with getting value from FE element
-
 $('#download-png').hide();
 $('#download-pdf').hide();
 let chartType = '';
