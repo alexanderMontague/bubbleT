@@ -41,8 +41,11 @@ $dark:          $gray-800;
 .btn.btn-linkedin:visited{color:$white;}
 
 label {color: $primary; font-weight:700;}
+#sorting-options label {color:$dark; font-weight: 400}
 
-body {background-color:$white;}
+body {
+    background-color:$white;
+}
 
 $font-family-sans-serif: "PT Sans", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
 

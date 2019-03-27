@@ -478,50 +478,48 @@
               aria-labelledby="view-type-line-tab"
             >
               <!-- LINE CHART HTML GOES HERE -->
+              <div
+                id="line-chart-title"
+                style="font-size: 20px; font-weight: bold; text-align: center;"
+              >
+                Aggregated Total Salaries Paid per Sector
+              </div>
               <canvas id="line-chart"></canvas>
-              <script>
-                let myLineChart = document.getElementById('line-chart').getContext('2d');
-                let lineChart = new Chart(myLineChart, {
-                  type: 'line',
-                  data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                    datasets: [
-                      {
-                        label: 'Dummy Data',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
-                          'rgba(255, 159, 64, 0.2)',
-                        ],
-                        borderColor: [
-                          'rgba(255, 99, 132, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(255, 206, 86, 1)',
-                          'rgba(75, 192, 192, 1)',
-                          'rgba(153, 102, 255, 1)',
-                          'rgba(255, 159, 64, 1)',
-                        ],
-                        borderWidth: 1,
-                      },
-                    ],
-                  },
-                  options: {
-                    scales: {
-                      yAxes: [
-                        {
-                          ticks: {
-                            beginAtZero: true,
-                          },
-                        },
-                      ],
-                    },
-                  },
-                });
-              </script>
+              <div style="display: flex; flex-direction: column;">
+                <div style="display: flex; justify-content: space-evenly;">
+                  <button
+                    id="line-sector-button"
+                    class="btn btn-secondary"
+                    style="margin-top: 20px; width: 150px;"
+                  >
+                    Salary per Sector View
+                  </button>
+                  <!-- <button
+                    id="pie-employer-button"
+                    class="btn btn-secondary"
+                    style="margin-top: 20px; width: 150px;"
+                  >
+                    Job Employer View
+                  </button>
+                  <button
+                    id="pie-year-button"
+                    class="btn btn-secondary"
+                    style="margin-top: 20px; width: 150px;"
+                  >
+                    Year View
+                  </button>
+                  <button
+                    id="pie-salary-button"
+                    class="btn btn-secondary"
+                    style="margin-top: 20px; width: 150px;"
+                  >
+                    Salary View
+                  </button> -->
+                </div>
+                <div style="text-align: center; padding-top: 20px;">
+                  Note: Views work best with less than 20 sectors or employers
+                </div>
+              </div>
             </div>
           </div>
         </main>
