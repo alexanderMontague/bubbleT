@@ -61,7 +61,6 @@
   </head>
 
 </head>
-
   <body>
     <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
       <a class="navbar-brand p-0" href="index.html"><img src="./assets/logo.png" alt="bubbleT"/></a>
@@ -100,7 +99,6 @@
                     <option>Ontario</option>
                   </select>
                 </div>
-
               </div>
               <div class="form-group">
                 <div><label for="filter-year">Year</label></div>
@@ -159,7 +157,7 @@
 
               <div class="form-group">
                 <button id="filter-button"  class="btn btn-secondary w-100">
-                  Update Filters
+                  Update Filters <i class="fas fa-exclamation-triangle" style="display:none"></i>
                 </button>
               </div>
             </form>
@@ -176,13 +174,8 @@
               aria-labelledby="view-type-table-tab"
             >
               <div id="table-menu" class="row mb-2">
-                <div class="col-8">
-                  <div class="mb-0 alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Sample alert!</strong> This is a message to the user.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
+                <div class="col-8" id="alert-section">
+                  
                 </div>
                 <div class="col-4" style="margin: auto;">
                   <button

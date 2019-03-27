@@ -84,6 +84,14 @@ document.getElementById('update-button').onclick = () => {
   console.log('Updated!');
 };
 
+// filter form change event handler
+$('#filter-form').change(function(event) {
+  $("#filter-button")
+    .removeClass('btn-secondary')
+    .addClass('btn-primary').children('i').show();
+  createAlert('warning', 'Press the update filters button to reload the table.');
+});
+
 // filter button click handler
 document.getElementById('filter-button').onclick = event => {
   const selectedYear = $('#filter-year').val();
@@ -123,6 +131,9 @@ document.getElementById('filter-button').onclick = event => {
       queryObj,
     },
     success: data => {
+      $('#filter-button')
+        .removeClass('btn-primary')
+        .addClass('btn-secondary').children('i').hide();
       tableData = data.queryData;
 
       // Destroying DataTable before regenerating
@@ -139,12 +150,27 @@ document.getElementById('filter-button').onclick = event => {
         bRetrieve: true,
         searching: false,
       });
+
+      createAlert('success', 'Table has been updated.', 'Success!');
+      
     },
     error: err => {
       console.log('Initial table data fetch failed', err);
     },
   });
 };
+
+function createAlert(type, text, title){
+  $("#alert-section").html('\
+    <div class="mb-0 alert alert-'+type+' alert-dismissible fade show" role="alert">\
+      '+(title ? '<strong>'+title+'</strong> ' : '')+text+'\
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
+        <span aria-hidden="true">&times;</span>\
+      </button>\
+    </div>');
+}
+
+const dataType = 'csv'; // replace with getting value from FE element
 
 $('#download-png').hide();
 $('#download-pdf').hide();
@@ -177,6 +203,7 @@ viewType.onclick = () => {
 
 let dataType = ''; // replace with getting value from FE element
 $('#download-options').hide();
+
 // download salary button
 document.getElementById('downloadSalaryButton').onclick = () => {
   $('#download-options').slideToggle('slow', () => {});
