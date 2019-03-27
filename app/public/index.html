@@ -89,16 +89,15 @@
         <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
           <div class="sidebar-sticky">
             <h4>Filters</h4>
-            <form id="filter-form" style="margin-left: 15px;">
-              <div><label for="filter-province">Province</label></div>
-              <div>
+            <form id="filter-form">
+              <div class="form-group">
+                <label for="filter-province">Province</label>
                 <select id="filter-province" class="form-control">
                   <option>Ontario</option>
                 </select>
               </div>
-
-              <div><label style="margin-top: 20px;" for="filter-year">Year</label></div>
-              <div>
+              <div class="form-group">
+                <label for="filter-year">Year</label>
                 <select id="filter-year" class="form-control" multiple="multiple">
                   <option selected>2013</option>
                   <option>2012</option>
@@ -106,9 +105,8 @@
                   <option>2010</option>
                 </select>
               </div>
-
-              <div><label style="margin-top: 20px;" for="filter-sector">Sector</label></div>
-              <div>
+              <div class="form-group">
+                <label for="filter-sector">Sector</label>
                 <select id="filter-sector" class="form-control" multiple="multiple">
                   <option>Universities</option>
                   <option>Colleges</option>
@@ -116,37 +114,39 @@
                   <option value="Hospitals and Boards of Public Health">Hospitals</option>
                 </select>
               </div>
-
-              <div><label style="margin-top: 20px;" for="filter-salary">Salary Range</label></div>
-
-              <div>
-                <div class="col-3" style="width: 100%; display: inline-block;">Min:</div>
-                <div class="col-8" style="width: 100%; display: inline-block;">
-                  <input style="width: 120px" type="number" min="0" id="min-salary" />
+              <div class="form-group">
+                <label>Salary Range</label>
+                <div class="form-group row ml-2">
+                  <label for="min-salary" class="col-sm-2 col-form-label text-dark">Min</label>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="min-salary" type="number" min="0">
+                  </div>
+                </div>
+                <div class="form-group row ml-2">
+                  <label for="max-salary" class="col-sm-2 col-form-label text-dark">Max</label>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="max-salary" type="number" min="0">
+                  </div>
                 </div>
               </div>
-              <div>
-                <div class="col-3" style="width: 100%; display: inline-block;">Max:</div>
-                <div class="col-8" style="width: 100%; display: inline-block; margin-top: 10px;">
-                  <input style="width: 120px" type="number" min="0" id="max-salary" />
-                </div>
+              <div class="form-group">
+                <label for="filter-employer">Employer</label>
+                <input type="text" class="form-control" id="filter-employer">
               </div>
-              <div><label style="margin-top: 20px;" for="filter-employer">Employer</label></div>
-              <div><input type="text" style="width: 100%" id="filter-employer" /></div>
+              <div class="form-group">
+                <label for="filter-fname">First Name</label>
+                <input type="text" class="form-control" id="filter-fname">
+              </div>
+              <div class="form-group">
+                <label for="filter-lname">Last Name</label>
+                <input type="text" class="form-control" id="filter-lname">
+              </div>
 
-              <label style="margin-top: 20px;" for="filter-fname">First Name</label>
-              <input type="text" style="width: 100%" id="filter-fname" />
-
-              <label style="margin-top: 20px;" for="filter-lname">Last Name</label>
-              <input type="text" style="width: 100%" id="filter-lname" />
-
-              <button
-                id="filter-button"
-                class="btn btn-secondary"
-                style="margin-top: 20px; width: 100%;"
-              >
-                Update Filters
-              </button>
+              <div class="form-group">
+                <button id="filter-button"  class="btn btn-secondary w-100">
+                  Update Filters
+                </button>
+              </div>
             </form>
           </div>
         </nav>
