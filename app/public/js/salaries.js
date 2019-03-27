@@ -13,7 +13,7 @@ $(document).ready(function() {
   // set multiselects
   $('#filter-year').multiselect();
   $('#filter-sector').multiselect();
-  $('#filter-province').multiselect("disable");
+  $('#filter-province').multiselect('disable');
 
   let selectedYear = document.getElementById('filter-year').value;
 
@@ -171,8 +171,44 @@ function createAlert(type, text, title){
 }
 
 const dataType = 'csv'; // replace with getting value from FE element
+
+$('#download-png').hide();
+$('#download-pdf').hide();
+let chartType = '';
+const viewType = document.getElementById('view-type');
+viewType.onclick = () => {
+  setTimeout(() => {
+    // something is async lmao
+    for (let item of viewType.children) {
+      if (item.id === 'view-type-table-tab' && item.className.includes('active')) {
+        console.log('csv and json');
+        $('#download-png').hide();
+        $('#download-pdf').hide();
+        $('#download-csv').show();
+        $('#download-json').show();
+        break;
+      } else {
+        console.log('png pdf');
+        $('#download-csv').hide();
+        $('#download-json').hide();
+        $('#download-png').show();
+        $('#download-pdf').show();
+        chartType = item.id;
+        console.log('in active', item);
+        break;
+      }
+    }
+  }, 0);
+};
+
+let dataType = ''; // replace with getting value from FE element
+$('#download-options').hide();
+
 // download salary button
 document.getElementById('downloadSalaryButton').onclick = () => {
+  $('#download-options').slideToggle('slow', () => {});
+};
+const getDownload = () => {
   $.ajax({
     type: 'post',
     url: '/api/downloadData',
@@ -195,30 +231,40 @@ document.getElementById('downloadSalaryButton').onclick = () => {
     },
   });
 };
+document.getElementById('download-csv').onclick = () => {
+  dataType = 'csv';
+  getDownload();
+};
+
+document.getElementById('download-json').onclick = () => {
+  dataType = 'json';
+  getDownload();
+};
+document.getElementById('download-png').onclick = () => {
+  switch (chartType) {
+    case 'view-type-pie-tab':
+      canvasName = 'pie-chart';
+      break;
+
+    case 'view-type-line-tab':
+      canvasName = 'line-chart';
+      break;
+
+    default:
+      break;
+  }
+
+  const link = document.createElement('a');
+  link.download = 'pie-chart-salary.png';
+  link.href = document.getElementById('pie-chart').toDataURL();
+  link.click();
+};
+
+document.getElementById('download-pdf').onclick = () => {
+  dataType = 'pdf';
+};
 
 // CHART JS SECTION
-const colours = [
-  '#3366CC',
-  '#DC3912',
-  '#FF9900',
-  '#109618',
-  '#990099',
-  '#3B3EAC',
-  '#0099C6',
-  '#DD4477',
-  '#66AA00',
-  '#B82E2E',
-  '#316395',
-  '#994499',
-  '#22AA99',
-  '#AAAA11',
-  '#6633CC',
-  '#E67300',
-  '#8B0707',
-  '#329262',
-  '#5574A6',
-  '#3B3EAC',
-];
 const opaqueColours = [
   'rgba(255, 99, 132, 0.2)',
   'rgba(54, 162, 235, 0.2)',
@@ -295,7 +341,7 @@ const colors = [
   '#8BEE97',
   '#A2FF69',
   '#F57AA6',
-  '#3B3AEC'
+  '#3B3AEC',
 ];
 
 // Pie Chart
@@ -322,15 +368,15 @@ const updateChart = () => {
       ],
     },
     options: {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
+      // scales: {
+      //   yAxes: [
+      //     {
+      //       ticks: {
+      //         beginAtZero: true,
+      //       },
+      //     },
+      //   ],
+      // },
     },
   });
 };
@@ -429,6 +475,61 @@ document.getElementById('pie-salary-button').onclick = () => {
     }
   }
   updateChart();
+};
+
+// Histogram
+let histoData = {};
+let histogramChart = null;
+let myHistogram = document.getElementById('histogram-chart').getContext('2d');
+let histogramTitle = document.getElementById('histo-chart-title');
+
+// create pie chart
+const updateHistogram = () => {
+  if (histogramChart !== null) {
+    histogramChart.destroy();
+  }
+  histogramChart = new Chart(myHistogram, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(histoData),
+      datasets: [
+        {
+          data: Object.values(histoData),
+          backgroundColor: colors,
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
+};
+
+// data cleansing for default sector
+document.getElementById('view-type-histogram-tab').onclick = () => {
+  histoData = {};
+  for (let i = 0; i < tableData.length; i++) {
+    // if sector is not there yet
+    const sectorKey = (tableData[i].sector || tableData[i]._sector).content.replace(/&amp;/g, '&');
+    if (!histoData[sectorKey]) {
+      histoData[sectorKey] = 1;
+    } else {
+      histoData[sectorKey]++;
+    }
+  }
+  updateHistogram();
 };
 
 // Line Chart
