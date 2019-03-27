@@ -1,0 +1,20 @@
+[{
+    "question": "What is the Public Sector Salary Disclosure Act?",
+    "answer": "<a href=\"https://www.ontario.ca/page/public-sector-salary-disclosure\">http://ontario.ca</a><br>Ontario instituted the act in 1996 to make the public sector more accountable to taypayers. This created a requirement that businesses and government sectors which rely on public funding disclose the salaries of individuals making at or above $100,000 CAD in the previous calendar year."
+},
+{
+    "question": "Why can't I access other province data?",
+    "answer": "We are currently working on a demo of Ontario data, as the Ontario data has the easiest API to pull from and we are an Ontario based group. However, we plan to extend this to include other provincial public sector data in the future."
+},
+{
+    "question": "Will you be adding more graph features soon?",
+    "answer": "Yes!"
+},
+{
+    "question": "Do you get paid to make this?",
+    "answer": "Nope!"
+},
+{
+    "question": "Can I contribute to this project?",
+    "answer": "We may be changing this to an open source project for continued development, but this has not happened yet."
+}]

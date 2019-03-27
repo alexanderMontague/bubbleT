@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Ahmed Mahmoud",
+    "title": "Software Architect",
+    "image": "assets/team-01.jpg",
+    "li_username": "amahmoud33"
+  },
+  {
+    "name": "Alex Montague",
+    "title": "Development Engineer",
+    "image": "assets/team-02.jpg",
+    "li_username": "alex-montague"
+  },
+  {
+    "name": "Aysu Gundogan",
+    "title": "Database Designer",
+    "image": "assets/team-03.jpg",
+    "li_username": "aysugundogan"
+  },
+  {
+    "name": "Dhruvi Shah",
+    "title": "Presenter",
+    "image": "assets/team-04.jpg",
+    "li_username": "dhruvi-shah-6ab004141"
+  },
+  {
+    "name": "Logan Macleod",
+    "title": "Software Developer",
+    "image": "assets/team-05.jpg",
+    "li_username": "logan-macleod-9b5601179"
+  },
+  {
+    "name": "Zina Ramirez",
+    "title": "Team Leader",
+    "image": "assets/team-06.jpg",
+    "li_username": "zina-ramirez-7125bb90"
+  }
+]

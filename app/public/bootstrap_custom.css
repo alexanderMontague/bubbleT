@@ -5,6 +5,23 @@
 .bg-secondary {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
 
+.btn.btn-linkedin {
+  background-color: #0E76A8;
+  color: #fff; }
+
+.btn.btn-linkedin:hover,
+.btn.btn-linkedin:active,
+.btn.btn-linkedin:visited {
+  color: #fff; }
+
+label {
+  color: #F94741;
+  font-weight: 700; }
+
+#sorting-options label {
+  color: #343a40;
+  font-weight: 400; }
+
 body {
   background-color: #fff; }
 
@@ -13,7 +30,8 @@ body {
 
 body {
   font-size: .875rem;
-  padding-top: 60px; }
+  padding-top: 60px;
+  padding-bottom: 40px; }
 
 .feather {
   width: 16px;
@@ -7120,3 +7138,7 @@ a.text-dark:hover, a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: #dee2e6; } }
+
+  .select-box {
+    margin-left: 10px;
+  }
