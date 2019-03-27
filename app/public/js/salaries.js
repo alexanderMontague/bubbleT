@@ -341,15 +341,15 @@ const updateChart = () => {
       ],
     },
     options: {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
+      // scales: {
+      //   yAxes: [
+      //     {
+      //       ticks: {
+      //         beginAtZero: true,
+      //       },
+      //     },
+      //   ],
+      // },
     },
   });
 };
@@ -448,6 +448,61 @@ document.getElementById('pie-salary-button').onclick = () => {
     }
   }
   updateChart();
+};
+
+// Histogram
+let histoData = {};
+let histogramChart = null;
+let myHistogram = document.getElementById('histogram-chart').getContext('2d');
+let histogramTitle = document.getElementById('histo-chart-title');
+
+// create pie chart
+const updateHistogram = () => {
+  if (histogramChart !== null) {
+    histogramChart.destroy();
+  }
+  histogramChart = new Chart(myHistogram, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(histoData),
+      datasets: [
+        {
+          data: Object.values(histoData),
+          backgroundColor: colors,
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      legend: {
+        display: false,
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
+};
+
+// data cleansing for default sector
+document.getElementById('view-type-histogram-tab').onclick = () => {
+  histoData = {};
+  for (let i = 0; i < tableData.length; i++) {
+    // if sector is not there yet
+    const sectorKey = (tableData[i].sector || tableData[i]._sector).content.replace(/&amp;/g, '&');
+    if (!histoData[sectorKey]) {
+      histoData[sectorKey] = 1;
+    } else {
+      histoData[sectorKey]++;
+    }
+  }
+  updateHistogram();
 };
 
 // Line Chart
