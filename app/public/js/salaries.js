@@ -172,6 +172,36 @@ document.getElementById('downloadSalaryButton').onclick = () => {
 };
 
 // CHART JS SECTION
+const colours = [
+  '#3366CC',
+  '#DC3912',
+  '#FF9900',
+  '#109618',
+  '#990099',
+  '#3B3EAC',
+  '#0099C6',
+  '#DD4477',
+  '#66AA00',
+  '#B82E2E',
+  '#316395',
+  '#994499',
+  '#22AA99',
+  '#AAAA11',
+  '#6633CC',
+  '#E67300',
+  '#8B0707',
+  '#329262',
+  '#5574A6',
+  '#3B3EAC',
+];
+const opaqueColours = [
+  'rgba(255, 99, 132, 0.2)',
+  'rgba(54, 162, 235, 0.2)',
+  'rgba(255, 206, 86, 0.2)',
+  'rgba(153, 102, 255, 0.2)',
+  'rgba(75, 192, 192, 0.2)',
+  'rgba(255, 159, 64, 0.2)',
+];
 
 // Pie Chart
 let sectorData = {};
@@ -191,28 +221,7 @@ const updateChart = () => {
       datasets: [
         {
           data: Object.values(sectorData),
-          backgroundColor: [
-            '#3366CC',
-            '#DC3912',
-            '#FF9900',
-            '#109618',
-            '#990099',
-            '#3B3EAC',
-            '#0099C6',
-            '#DD4477',
-            '#66AA00',
-            '#B82E2E',
-            '#316395',
-            '#994499',
-            '#22AA99',
-            '#AAAA11',
-            '#6633CC',
-            '#E67300',
-            '#8B0707',
-            '#329262',
-            '#5574A6',
-            '#3B3EAC',
-          ],
+          backgroundColor: colours,
           borderWidth: 2,
         },
       ],
@@ -325,4 +334,96 @@ document.getElementById('pie-salary-button').onclick = () => {
     }
   }
   updateChart();
+};
+
+// Line Chart
+let lineData = {};
+let lineChart = null;
+let myLineChart = document.getElementById('line-chart').getContext('2d');
+let lineChartTitle = document.getElementById('line-chart-title');
+
+// render line data
+const formatLineData = () => {
+  return Object.keys(lineData).map((year, index) => {
+    return {
+      label: year,
+      data: Object.values(lineData[year]),
+      backgroundColor: opaqueColours[index],
+      borderWidth: 1,
+    };
+  });
+};
+
+// create line chart
+const updateLineChart = () => {
+  if (lineChart !== null) {
+    lineChart.destroy();
+  }
+  lineChart = new Chart(myLineChart, {
+    type: 'line',
+    data: {
+      labels: Object.keys(lineData[Object.keys(lineData)[0]]),
+      datasets: formatLineData(),
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
+  });
+};
+
+// data cleansing for default view
+document.getElementById('view-type-line-tab').onclick = () => {
+  lineData = {};
+  for (let i = 0; i < tableData.length; i++) {
+    const yearKey = tableData[i].calendar_year.content;
+    const sectorKey = (tableData[i].sector || tableData[i]._sector).content.replace(/&amp;/g, '&');
+    const salary = Number(tableData[i].salary_paid.content);
+
+    // if year is undefined first
+    if (!lineData[yearKey]) {
+      lineData[yearKey] = {};
+    }
+
+    // if sector is undefined first
+    if (!lineData[yearKey][sectorKey]) {
+      lineData[yearKey][sectorKey] = 0;
+    }
+
+    // add salary record to current data
+    lineData[yearKey][sectorKey] += salary;
+  }
+  updateLineChart();
+};
+
+// data cleansing for aggregated salary view
+document.getElementById('line-sector-button').onclick = () => {
+  lineChartTitle.innerHTML = 'Aggregated Total Salaries Paid per Sector';
+  lineData = {};
+  for (let i = 0; i < tableData.length; i++) {
+    const yearKey = tableData[i].calendar_year.content;
+    const sectorKey = (tableData[i].sector || tableData[i]._sector).content.replace(/&amp;/g, '&');
+    const salary = Number(tableData[i].salary_paid.content);
+
+    // if year is undefined first
+    if (!lineData[yearKey]) {
+      lineData[yearKey] = {};
+    }
+
+    // if sector is undefined first
+    if (!lineData[yearKey][sectorKey]) {
+      lineData[yearKey][sectorKey] = 0;
+    }
+
+    // add salary record to current data
+    lineData[yearKey][sectorKey] += salary;
+  }
+  updateLineChart();
 };
