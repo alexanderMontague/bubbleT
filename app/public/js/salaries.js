@@ -261,7 +261,15 @@ document.getElementById('download-png').onclick = () => {
 };
 
 document.getElementById('download-pdf').onclick = () => {
-  dataType = 'pdf';
+  const doc = new jsPDF();
+  const image = document.getElementById('pie-chart').toDataURL('image/png');
+  doc.addImage(image, 'PNG', 15, 40, 180, 100);
+  doc.save('pie-chart-salary.pdf');
+
+  // const link = document.createElement('a');
+  // link.download = 'pie-chart-salary.pdf';
+  // link.href = doc;
+  // link.click();
 };
 
 // CHART JS SECTION
