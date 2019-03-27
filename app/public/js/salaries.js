@@ -34,7 +34,7 @@ $(document).ready(function() {
         searching: false,
       });
     },
-    fail: err => {
+    error: err => {
       console.log('Initial table data fetch failed', err);
     },
   });
@@ -139,7 +139,7 @@ document.getElementById('filter-button').onclick = event => {
         searching: false,
       });
     },
-    fail: err => {
+    error: err => {
       console.log('Initial table data fetch failed', err);
     },
   });
@@ -164,7 +164,8 @@ document.getElementById('downloadSalaryButton').onclick = () => {
       hiddenLink.download = `salaryData.${dataType === 'json' ? 'json' : 'csv'}`;
       hiddenLink.click();
     },
-    fail: err => {
+    error: err => {
+      alert("File is too large! Please create a more detailed query.")
       console.log('File download failed', err);
     },
   });

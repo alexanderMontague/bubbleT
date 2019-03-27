@@ -62,8 +62,6 @@ app.set('port', process.env.PORT || 4000);
 app.use(expressStatusMonitor());
 app.use(compression());
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -71,6 +69,13 @@ app.use(flash());
 app.use(express.static('./public'));
 app.use(cors(corsOptions)); // todo set CORS up
 app.disable('x-powered-by');
+
+app.use(bodyParser.json({limit: '50mb'}) );
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true,
+  parameterLimit:50000
+}));
 
 // For public requests
 app.use(BASE_URL, cors(corsOptions), publicRoutes);
