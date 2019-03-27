@@ -13,6 +13,7 @@ $(document).ready(function() {
   // set multiselects
   $('#filter-year').multiselect();
   $('#filter-sector').multiselect();
+  $('#filter-province').multiselect("disable");
 
   let selectedYear = document.getElementById('filter-year').value;
 
