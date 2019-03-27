@@ -34,9 +34,11 @@ $(document).ready(function() {
         bRetrieve: true,
         searching: false,
       });
+      $('#loader').hide();
     },
     error: err => {
       console.log('Initial table data fetch failed', err);
+      createAlert('danger', 'Table failed to load.');
     },
   });
 });
