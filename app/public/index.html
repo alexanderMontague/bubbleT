@@ -61,66 +61,6 @@
   </head>
 
 </head>
-
-<body>
-  <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
-    <a class="navbar-brand p-0" href="#"><img src="logo.png" alt="bubbleT"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <ul class="navbar-nav">
-        <li class="nav-item active"><a class="nav-link" href="index.html">home</a></li>
-        <li class="nav-item"><a class="nav-link" href="about.html">about</a></li>
-        <li class="nav-item"><a class="nav-link" href="faq.html">faq</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.html">contact</a></li>
-      </ul>
-    </div>
-  </nav>
-  <!-- end main menu -->
-
-  <div class="container-fluid">
-    <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-lightish sidebar">
-        <div class="sidebar-sticky">
-          <h4>Filters</h4>
-          <form id="filter-form" style="margin-left: 15px;">
-            <div><label for="filter-province">Province</label></div>
-            <div>
-              <select id="filter-province" class="form-control">
-                <option>Ontario</option>
-              </select>
-            </div>
-
-            <div><label style="margin-top: 20px;" for="filter-year">Year</label></div>
-            <div>
-              <select id="filter-year" class="form-control">
-                <option selected>2013</option>
-                <option>2012</option>
-                <option>2011</option>
-                <option>2010</option>
-              </select>
-            </div>
-
-            <div><label style="margin-top: 20px;" for="filter-sector">Sector</label></div>
-            <div>
-              <select id="filter-sector" class="form-control">
-                <option selected></option>
-                <option>Universities</option>
-                <option>Colleges</option>
-                <option>School Boards</option>
-                <option>Hospitals and Boards of Public Health</option>
-              </select>
-            </div>
-
-            <div><label style="margin-top: 20px;" for="filter-salary">Salary Range</label></div>
-
-            <div>
-              <div class="col-3" style="width: 100%; display: inline-block;">Min:</div>
-              <div class="col-8" style="width: 100%; display: inline-block;">
-                <input style="width: 120px" type="number" min="0" id="min-salary" />
-=======
   <body>
     <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
       <a class="navbar-brand p-0" href="index.html"><img src="./assets/logo.png" alt="bubbleT"/></a>
@@ -159,7 +99,6 @@
                     <option>Ontario</option>
                   </select>
                 </div>
->>>>>>> 311af6eee995a0063c3d4c291a3644e19c65da9f
               </div>
               <div class="form-group">
                 <div><label for="filter-year">Year</label></div>
@@ -218,7 +157,7 @@
 
               <div class="form-group">
                 <button id="filter-button"  class="btn btn-secondary w-100">
-                  Update Filters
+                  Update Filters <i class="fas fa-exclamation-triangle" style="display:none"></i>
                 </button>
               </div>
             </form>
@@ -235,13 +174,8 @@
               aria-labelledby="view-type-table-tab"
             >
               <div id="table-menu" class="row mb-2">
-                <div class="col-8">
-                  <div class="mb-0 alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Sample alert!</strong> This is a message to the user.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
+                <div class="col-8" id="alert-section">
+                  
                 </div>
                 <div class="col-4" style="margin: auto;">
                   <a
