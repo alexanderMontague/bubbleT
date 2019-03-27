@@ -8,7 +8,7 @@ $(document).ready(function() {
                   <div class=\"card-body\">\
                     <h3 class=\"title\">"+item.name+"</h3>\
                     <span class=\"post\">"+item.title+"</span><br>\
-                    <a href=\"https://www.linkedin.com/in/"+item.li_username+" target=\"_blank\" class=\"btn btn-sm btn-linkedin\">\
+                    <a href=\"https://www.linkedin.com/in/"+item.li_username+"\" target=\"_blank\" class=\"btn btn-sm btn-linkedin\">\
                     <i class=\"fab fa-linkedin-in\"></i></a>\
                   </div>\
                 </div>\
