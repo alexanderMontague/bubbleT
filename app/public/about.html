@@ -26,7 +26,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 </head>
 
-<body>
+<body class="bg-lightish">
   <nav class="navbar bg-light navbar-expand-lg fixed-top shadow">
     <a class="navbar-brand p-0" href="index.html"><img src="assets/logo.png" alt="bubbleT"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -43,125 +43,32 @@
     </div>
   </nav><!-- end main menu -->
 
-  <div class="container-fluid">
-    <div class="row">
-
-      <main role="main" class="col-md-12">
-        <div class="tab-content" id="view-type-tabContent">
-          <div id="team" class="section wb">
-            <div class="container">
-              <h2 class="title" align="center">What Is BubbleT?</h2>
-              <div class=container-fluid>
-                <span class="post">
-                  We are a team of Computer Science and Software Engineering students from the University of Guelph, and BubbleT is our team project for System Analysis and Design in Applications (CIS*3750, Winter 2019). BubbleT is an app that collects and displays salary records from Canada's public sector high earners. 
-                </span>
-              </div>
+  <div class="container bg-light shadow p-0">
+      <section class="bg-dark text-white p-4">
+        <h2 class="text-info">What Is BubbleT?</h2>
+        <p>
+          We are a team of Computer Science and Software Engineering students from the University of Guelph, and BubbleT is our team project for System Analysis and Design in Applications (CIS*3750, Winter 2019). BubbleT is an app that collects and displays salary records from Canada's public sector high earners.
+        </p>
+      </section>
+      <div id="team" class="p-4">
+          <h2 class="text-center">Our Team</h2>
+          <hr>
+          <div id="loader" class="text-center text-info">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
             </div>
-
-            <div class="container">
-              <h2 class="title" align="center">Our Team</h2>
-              <div class="container-fluid">
-                <div class="row">
-
-                  <div class="col-lg-4 col-md-12">
-                      <div class="card-body">
-                          <div class="team-img">
-                              <img src="assets/team-01.jpg">
-                          </div>
-                          <div class="team-content">
-                              <h3 class="title">Ahmed Mahmoud</h3>
-                              <span class="post">Software Architect</span><br/>
-                              <a href="https://www.linkedin.com/in/amahmoud33/" target="_blank">LinkedIn</a>
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="col-lg-4 col-md-12">
-                      <div class="card-body">
-                          <div class="team-img">
-                              <img src="assets/team-02.jpg">
-                          </div>
-                          <div class="team-content">
-                              <h3 class="title">Alexander Montague</h3>
-                              <span class="post">Development Engineer</span><br/>
-                              <a href="https://www.linkedin.com/in/alex-montague/" target="_blank">LinkedIn</a>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-lg-4 col-md-12">
-                      <div class="card-body">
-                          <div class="team-img">
-                              <img src="assets/team-03.jpg">
-                          </div>
-                          <div class="team-content">
-                              <h3 class="title">Aysu Gundogan</h3>
-                              <span class="post">Database Designer</span><br/>
-                              <a href="https://www.linkedin.com/in/aysugundogan/" target="_blank">LinkedIn</a>
-                          </div>
-                      </div>
-                  </div>
-
-                </div>
-
-                <div class="row">
-
-                  <div class="col-lg-4 col-md-12">
-                      <div class="card-body">
-                          <div class="team-img">
-                              <img src="assets/team-04.jpg">
-                          </div>
-                          <div class="team-content">
-                              <h3 class="title">Dhruvi Shah</h3>
-                              <span class="post">Presenter</span><br/>
-                              <a href="https://www.linkedin.com/in/dhruvi-shah-6ab004141/" target="_blank">LinkedIn</a>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-lg-4 col-md-12">
-                      <div class="card-body">
-                          <div class="team-img">
-                              <img src="assets/team-05.jpg">
-                          </div>
-                          <div class="team-content">
-                              <h3 class="title">Logan Macleod</h3>
-                              <span class="post">Software Developer</span><br/>
-                              <a href="https://www.linkedin.com/in/logan-macleod-9b5601179/" target="_blank">LinkedIn</a>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-lg-4 col-md-12">
-                      <div class="card-body">
-                          <div class="team-img">
-                              <img src="assets/team-06.jpg">
-                          </div>
-                          <div class="team-content">
-                              <h3 class="title">Zina Ramirez</h3>
-                              <span class="post">Team Leader</span><br/>
-                              <a href="https://www.linkedin.com/in/zina-ramirez-7125bb90/" target="_blank">LinkedIn</a>
-                          </div>
-                      </div>
-                  </div>
-
-                </div><!-- end row -->
-              </div><!-- end container -->
-            </div>
-
-          </div><!-- end section -->  
-        </div>
-      </main>
-    </div><!-- end row -->
-  </div><!-- end container-fluid -->
-  <br/>
-  <br/>
+          </div>
+          <div class="row" id="team-content">
+            <!-- dyanmically generated -->
+          </div><!-- end row -->
+      </div>
+  </div><!-- end container -->
   <footer class="fixed-bottom bg-dark text-white p-2 text-right text-muted">
     All Rights Reserved. &copy; 2019 <a href="about.html">bubbleT</a>
   </footer>
   <script src="./js/jquery.min.js"></script>
   <script src="./js/bootstrap.min.js"></script>
-  <script src="./js/salaries.js"></script>
+  <script src="./js/about.js"></script>
 </body>
 
 </html>
