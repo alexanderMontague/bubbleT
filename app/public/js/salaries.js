@@ -139,12 +139,25 @@ document.getElementById('filter-button').onclick = event => {
         bRetrieve: true,
         searching: false,
       });
+
+      createAlert('success', 'Table has been updated.', 'Success!')
+      
     },
     error: err => {
       console.log('Initial table data fetch failed', err);
     },
   });
 };
+
+function createAlert(type, text, title){
+  $("#alert-section").innerHTML('\
+    <div class="mb-0 alert alert-'+type+' alert-dismissible fade show" role="alert">\
+      '+(title ? '<strong>'+title+'</strong> ' : '')+text+'\
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
+        <span aria-hidden="true">&times;</span>\
+      </button>\
+    </div>';
+}
 
 const dataType = 'csv'; // replace with getting value from FE element
 // download salary button
