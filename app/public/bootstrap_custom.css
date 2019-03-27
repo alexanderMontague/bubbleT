@@ -5,6 +5,10 @@
 .bg-secondary {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
 
+label {
+  color: #F94741;
+  font-weight: 700; }
+
 body {
   background-color: #fff; }
 
