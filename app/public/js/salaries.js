@@ -13,6 +13,7 @@ $(document).ready(function() {
   // set multiselects
   $('#filter-year').multiselect();
   $('#filter-sector').multiselect();
+  $('#filter-province').multiselect("disable");
 
   let selectedYear = document.getElementById('filter-year').value;
 
@@ -203,6 +204,76 @@ const opaqueColours = [
   'rgba(255, 159, 64, 0.2)',
 ];
 
+const colors = [
+  '#3366CC',
+  '#DC3912',
+  '#FF9900',
+  '#109618',
+  '#990099',
+  '#3B3EAC',
+  '#0099C6',
+  '#DD4477',
+  '#66AA00',
+  '#B82E2E',
+  '#316395',
+  '#994499',
+  '#22AA99',
+  '#AAAA11',
+  '#6633CC',
+  '#E67300',
+  '#8B0707',
+  '#329262',
+  '#5574A6',
+  '#3B3EAC',
+  '#2367CC',
+  '#DCE912',
+  '#FF0900',
+  '#FF9837',
+  '#FFFFFF',
+  '#3B3EDC',
+  '#009EC6',
+  '#DD4D77',
+  '#66AF00',
+  '#B82A2E',
+  '#3A6395',
+  '#994A99',
+  '#22FA99',
+  '#AA8A11',
+  '#66H3CC',
+  '#E679A0',
+  '#8B0797',
+  '#A29269',
+  '#F573A6',
+  '#3B3AAC',
+  '#AAAF11',
+  '#663GCC',
+  '#E47300',
+  '#8B9707',
+  '#F29A62',
+  '#5E7EA6',
+  '#3B3FAC',
+  '#2367EC',
+  '#DFE212',
+  '#EF0910',
+  '#AF9987',
+  '#FFAFEF',
+  '#3D3EDE',
+  '#0D9EC6',
+  '#DD4D77',
+  '#06AF00',
+  '#B86A2E',
+  '#3A2395',
+  '#E94A79',
+  '#B2FA99',
+  '#CC8A11',
+  '#6EE3CC',
+  '#EEE9A0',
+  '#8BEE97',
+  '#A2FF69',
+  '#F57AA6',
+  '#3B3AEC'
+];
+
 // Pie Chart
 let sectorData = {};
 let pieChart = null;
@@ -221,7 +292,7 @@ const updateChart = () => {
       datasets: [
         {
           data: Object.values(sectorData),
-          backgroundColor: colours,
+          backgroundColor: colors,
           borderWidth: 2,
         },
       ],
