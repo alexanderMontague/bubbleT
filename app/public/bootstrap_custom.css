@@ -18,6 +18,10 @@ label {
   color: #F94741;
   font-weight: 700; }
 
+#sorting-options label {
+  color: #343a40;
+  font-weight: 400; }
+
 body {
   background-color: #fff; }
 
@@ -26,7 +30,8 @@ body {
 
 body {
   font-size: .875rem;
-  padding-top: 60px; }
+  padding-top: 60px;
+  padding-bottom: 40px; }
 
 .feather {
   width: 16px;
