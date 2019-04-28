@@ -1,6 +1,8 @@
 # CIS*3750 Group 3
 _A repository to host Group 3's code for CIS*3750 assignments_
 
+![](https://i.imgur.com/qUkS3vo.png)
+
 ### Team Members
 <ul>
   <li>Logan MacLeod - macleodl@uoguelph.ca</li>
@@ -14,5 +16,9 @@ _A repository to host Group 3's code for CIS*3750 assignments_
 ### Course Description
 This course is an introduction to the issues and techniques encountered in the design and construc-tion of software systems, focusing on the theory and models of software evolution.  Topics include requirements and specifications, prototyping, design principles, object-oriented analysis and design, standards, integration, risk analysis, testing and debugging.
 
-### Assignment One
-...
+### How to Run
+1) `git clone https://github.com/alexanderMontague/bubbleT` <br />
+2) `cd bubbleT`<br />
+3) `npm i`<br />
+4) `npm start`<br />
+5) Navigate to `localhost:4000` in your browser, and thats it!
