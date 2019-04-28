@@ -17,7 +17,7 @@ _A repository to host Group 3's code for CIS*3750 assignments_
 This course is an introduction to the issues and techniques encountered in the design and construc-tion of software systems, focusing on the theory and models of software evolution.  Topics include requirements and specifications, prototyping, design principles, object-oriented analysis and design, standards, integration, risk analysis, testing and debugging.
 
 ### How to Run
-1) `git clone https://github.com/alexanderMontague/bubbleT` <br />
+1) `git clone git@github.com:alexanderMontague/bubbleT.git` <br />
 2) `cd bubbleT`<br />
 3) `npm i`<br />
 4) `npm start`<br />
